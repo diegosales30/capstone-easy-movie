@@ -1,8 +1,14 @@
+import GlobalStyle from "./styles";
+
 const App = () => {
   return (
-    <div>
-      <h1>Easy Movie</h1>
-    </div>
+    <>   
+      <GlobalStyle/> 
+      <div>
+        <h1>Easy Movie</h1>
+      </div>
+  </>
+
   );
 };
 
