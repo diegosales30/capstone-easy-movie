@@ -1,9 +1,9 @@
-const App = () => {
+import Rotas from "./routes";
+
+function App() {
   return (
-    <div>
-      <h1>Easy Movie</h1>
-    </div>
+    <Rotas />
   );
-};
+}
 
 export default App;
