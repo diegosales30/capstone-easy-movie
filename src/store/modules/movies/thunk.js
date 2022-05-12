@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { listMovies } from "./actions"
 
-export const listMoviesThunk = () => (dispatch) =>{
+export const listMoviesThunk = (data) => (dispatch) =>{
 
     useEffect(()=>{
         axios.get("").then((response)=>{

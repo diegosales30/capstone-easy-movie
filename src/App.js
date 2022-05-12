@@ -1,3 +1,4 @@
+import PageLoginTest from "./page";
 import GlobalStyle from "./styles";
 
 const App = () => {
@@ -5,7 +6,9 @@ const App = () => {
     <>   
       <GlobalStyle/> 
       <div>
+
         <h1>Easy Movie</h1>
+        <PageLoginTest/>
       </div>
   </>
 
