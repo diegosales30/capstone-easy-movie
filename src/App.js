@@ -1,16 +1,23 @@
-import GlobalStyle from "./styles";
-import CardMovie from "./pages/Home";
+import { ToastContainer } from "react-toastify";
+import Rotas from "./routes";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
-    <>   
-      <GlobalStyle/> 
-      <div>
-        <CardMovie/>
-        <h1>Easy Movie</h1>
-      </div>
-  </>
-
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <Rotas />
+    </>
   );
 };
 
