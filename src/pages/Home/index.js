@@ -162,7 +162,7 @@ return (
     <Flex p={10} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="row" flexWrap="wrap">
         {moviesData.map((movie) =>  ( 
             <Box
-            bg="#c4c4c4" _dark={{bg:'#6666' }}
+            bg="#C4C4C4" _dark={{bg:'#6666' }}
             maxW="sm"
             width="260px"
             height="auto"
@@ -186,7 +186,7 @@ return (
                 <Box d="flex" alignItems="baseline" flexDirection="column"> 
                     <Flex mt="1" justifyContent="space-between" alignContent="center" display="flex" w="100%">
                     <Box
-                        fontSize="11px"
+                        fontSize="13px"
                         fontWeight="semibold"
                         as="h4"
                         lineHeight="tight"
@@ -195,6 +195,7 @@ return (
                         width="145px"
                         display="flex"
                         alignItems="center"
+                        fontFamily="sans-serif"
                         >
                         {movie.name}
                     </Box>
@@ -204,7 +205,7 @@ return (
                     color={'gray.800'}
                     fontSize={'1em'}>
                     <chakra.a href={'#'} display={'flex'}>
-                    <Button colorScheme='red' size="xs" alignSelf={"center"} onClick={() => {
+                    <Button fontFamily="sans-serif" colorScheme='red' size="xs" alignSelf={"center"} onClick={() => {
                         onOpen()
                         setInfo(movie)
                     }}>Ver Mais</Button>
@@ -229,9 +230,9 @@ return (
                 <ModalHeader textAlign="center" fontSize="15px">{info.name}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                <Flex p={0} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="column" flexWrap="wrap" height="auto">
+                <Flex p={0} w="90%" display="flex" alignItems="center" justifyContent="center" flexDirection="column" flexWrap="wrap" height="auto" fontFamily="sans-serif" margin="0 auto">
                     <Image
-                        src={info.imageURL}
+                        src={info.image}
                         alt={`Picture of ${info.name}`}
                         roundedTop="lg"
                         width="220px"
@@ -239,7 +240,7 @@ return (
                         
                     />
                     <Box margin="10px" display="flex" flexDirection="column" justifyContent="center" textAlign="left">
-                        <Box as="h5" fontSize="13px" fontWeight="semibold" marginBottom="5px">
+                        <Box as="h5" fontSize="13px" fontWeight="semibold" marginBottom="5px" >
                             Categoria: {info.category} 
                         </Box>
                         <Box as="h5" fontSize="13px" fontWeight="semibold" marginBottom="5px">
@@ -273,8 +274,8 @@ return (
         </Box>
       </Flex>
     <Box marginTop="10px" display="flex" justifyContent="center" >
-        <Button onClick={() => setPage(page -= 1)}>Pagina Anterior</Button>
-        <Button  marginLeft="10px" onClick={() => setPage(page += 1)}>Proxima Pagina</Button>
+        <Button fontFamily="sans-serif" colorScheme="red" onClick={() => setPage(page -= 1)}>Pagina Anterior</Button>
+        <Button fontFamily="sans-serif" colorScheme="red" marginLeft="10px" onClick={() => setPage(page += 1)}>Proxima Pagina</Button>
     </Box>
     </>
     );
