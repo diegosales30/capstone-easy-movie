@@ -11,7 +11,7 @@ import { FaCopyright } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../../components/FormLogin';
 
-export default function Login() {
+const Login = () =>  {
 
   const navigate = useNavigate()
 
@@ -50,3 +50,4 @@ export default function Login() {
     </VStack>
   )
 }
+export default Login;
