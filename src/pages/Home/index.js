@@ -132,18 +132,33 @@ function Rating({ rating, numReviews }) {
 function CardMovie() {
     const {isOpen, onOpen, onClose} =  useDisclosure()
     const [info, setInfo] = useState({})
+    let [page, setPage] = useState(1)
     const dispatch = useDispatch()
 
     const moviesData = useSelector((state) => state.movies)
-    
 
     useEffect(() => {
-        dispatch(listMoviesThunk()) 
-    },[moviesData])
+        dispatch(listMoviesThunk(page)) 
+    },[page])
 
+
+    /* let incialPage = 1
+    
+    const nextPage = () => {
+        dispatch(listMoviesThunk(incialPage += 1)) 
+
+    }
+
+    const previusPage = () => {
+        dispatch(listMoviesThunk(incialPage -= 1)) 
+    }
+
+    console.log(incialPage) */
+    
        
       
 return (
+    <>
     <Flex p={10} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="row" flexWrap="wrap">
         {moviesData.map((movie) =>  ( 
             <Box
@@ -256,12 +271,12 @@ return (
         </ModalContent>
         </Modal>
         </Box>
-        <Box marginTop="10px">
-            <Button>Pagina Anterior</Button>
-            <Button  marginLeft="10px">Proxima Pagina</Button>
-        </Box>
       </Flex>
-
+    <Box marginTop="10px" display="flex" justifyContent="center" >
+        <Button onClick={() => setPage(page -= 1)}>Pagina Anterior</Button>
+        <Button  marginLeft="10px" onClick={() => setPage(page += 1)}>Proxima Pagina</Button>
+    </Box>
+    </>
     );
   }
   
