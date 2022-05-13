@@ -1063,6 +1063,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@canvas-fonts/arial@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@canvas-fonts/arial/-/arial-1.0.4.tgz#2969ecfbb0770085960552da3ed7b24197e397d6"
+  integrity sha512-3kutrSYYWiICFjMNQWqlhu1JJmi1tlqz+CaVgkpq24B4oREIg8IYDvqJK4DiewC0qvcWvqVS/8GPNv5QXm7KeA==
+
+"@canvas-fonts/helvetica@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@canvas-fonts/helvetica/-/helvetica-1.0.4.tgz#0c164528b9ececb4e8979de752fdc4470a5f0e4b"
+  integrity sha512-IgHf+Kt9/7FlQd9c5PNqx5lh3e4pOw/CgL+bh5kCNNQE2rMdsXBy4BdPgLNDmBowoFPdLERdycd/xNY0PTRpSQ==
+
+"@canvas-fonts/helveticaneue@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@canvas-fonts/helveticaneue/-/helveticaneue-1.0.4.tgz#0243daf8c9ba813d33708f84b082636d7ea11c24"
+  integrity sha512-SbzEWpqs1Z2VkdyID4hkLEAt/zE990Uc8ZV+lpVXa27rZIS+qBBESff3ySqIOdkVsnXf539eP99beBb+VQGV+A==
+
 "@chakra-ui/accordion@1.4.11":
   version "1.4.11"
   resolved "https://registry.yarnpkg.com/@chakra-ui/accordion/-/accordion-1.4.11.tgz#31c0f17cd7b7c92f784307b87de73d8a8c4cf9f7"
@@ -1829,6 +1844,21 @@
     js-yaml "^4.1.0"
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
+
+"@fontsource/inter@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.10.tgz#c4e6839197dc4c77842eae9475ff0e036ff87fc9"
+  integrity sha512-YOt2/K8yo25MVBjrTImHxVimmyZEt0GcrWp2w7O29sdFX9SJqbGlOqjFJ1wI5yBbP6AmTeimyPE0UC/jjFRoIA==
+
+"@fontsource/poppins@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.8.tgz#65ce9b32f31bda5a25c23001bcebf1c66e440320"
+  integrity sha512-HE9yLDxYJEcxooVrYvvEhtyxaYU32hQIx1+npKegVefceE0l0zi0ePqKWWxYxkFpyy6WuZSQ+9rai3INnYKEJA==
+
+"@fontsource/roboto@^4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.5.tgz#4ecc38e690469378e2ec2a97f9c12282c654cc93"
+  integrity sha512-Pe1p+gAO6K0aLxBXlLoJRHVx352tVc/v/7DOnvM3t+FYXb+KUga9aCD1NpnDfd0kKnWXqrZyAXguyyFWDDuphw==
 
 "@hookform/resolvers@^2.8.8":
   version "2.8.8"
