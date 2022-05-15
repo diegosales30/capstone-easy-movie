@@ -96,7 +96,6 @@ return (
                         fontWeight="semibold"
                         as="h4"
                         lineHeight="tight"
-                        isTruncated
                         textAlign="left"
                         width="145px"
                         display="flex"
