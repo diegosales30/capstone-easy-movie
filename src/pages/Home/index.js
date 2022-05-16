@@ -19,9 +19,11 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { listMoviesThunk } from '../../store/modules/movies/thunk';
+import { toast } from 'react-toastify';
 
 
 const  Rating = ({ rating, numReviews }) => {
+
       
     return (
       <Box d="flex" alignItems="center">
@@ -55,14 +57,13 @@ const CardMovie = () => {
     const [info, setInfo] = useState({})
     let [page, setPage] = useState(1)
     const dispatch = useDispatch()
-
+    const token = JSON.parse(localStorage.getItem("@token"))
     const moviesData = useSelector((state) => state.movies)
 
     useEffect(() => {
         dispatch(listMoviesThunk(page)) 
     },[page])
-     
-      
+
 return (
     <>
     <Flex p={10} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="row" flexWrap="wrap">
@@ -167,7 +168,12 @@ return (
                             Plataformas de Streaming: {info.plataform_stream} 
                         </Box>
 
-                        <Button colorScheme="red" width="200px" mt="10px">Comprar Ingresso</Button>
+                        <Button colorScheme="red" width="200px" mt="10px" onClick={() => {
+                            if(token === null) {
+                                toast.error("Para comprar ingresso tem que logar")
+                            }
+                        }}
+                        >Comprar Ingresso</Button>
                     </Box>
                 </Flex>
                 </ModalBody>
