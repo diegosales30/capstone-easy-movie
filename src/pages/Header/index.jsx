@@ -16,6 +16,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import CardMovie from "../Home";
 
 const NavLink = ({ children }) => (
   <Link
@@ -83,6 +84,7 @@ const Nav = () => {
           </Flex>
         </Flex>
       </Box>
+      <CardMovie/>
     </>
   );
 }

@@ -71,7 +71,7 @@ return (
             bg="#C4C4C4" _dark={{bg:'#6666' }}
             maxW="sm"
             width="260px"
-            height="auto"
+            height="330px"
             borderWidth="1px"
             rounded="lg"
             shadow="lg"
@@ -90,9 +90,9 @@ return (
             />
             <Box p="4" display="flex" flexDirection="column">
                 <Box d="flex" alignItems="baseline" flexDirection="column"> 
-                    <Flex mt="1" justifyContent="space-between" alignContent="center" display="flex" w="100%">
+                    <Flex mt="1" justifyContent="space-between" alignContent="center" display="flex" w="100%" alignItems="center">
                     <Box
-                        fontSize="13px"
+                        fontSize="12px"
                         fontWeight="semibold"
                         as="h4"
                         lineHeight="tight"
