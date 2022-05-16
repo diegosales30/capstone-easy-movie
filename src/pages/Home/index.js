@@ -88,8 +88,8 @@ return (
                 width="100%"
                 height="250px"
             />
-            <Box p="4" display="flex" flexDirection="column">
-                <Box d="flex" alignItems="baseline" flexDirection="column"> 
+        <Box p="4" display="flex" flexDirection="column">
+                <Box d="flex" alignItems="center" flexDirection="column"> 
                     <Flex mt="1" justifyContent="space-between" alignContent="center" display="flex" w="100%" alignItems="center">
                     <Box
                         fontSize="12px"
