@@ -19,85 +19,9 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { listMoviesThunk } from '../../store/modules/movies/thunk';
+import { toast } from 'react-toastify';
 
 
-/* const data = [
-    {
-        imageURL:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-        name: 'Wayfarer Classic',
-        rating: 4.2,
-        numReviews: 34,
-    },
-    {
-        name:"Doutor Estranho no Multiverso da Loucura",
-        imageURL:"https://www.claquete.com.br/fotos/filmes/poster/12758_medio.jpg",
-        category: ["Ação", "Aventura", "Fantasia"],
-        age_rating: 12,
-        duration: "2 Horas 6 Minutos",
-        trailer: "https://www.youtube.com/watch?v=X23XCFgdh2M",
-        sinopse: "O aguardado filme trata da jornada do Doutor Estranho rumo ao desconhecido. Além de receber ajuda de novos aliados místicos e outros já conhecidos do público, o personagem atravessa as realidades alternativas incompreensíveis e perigosas do Multiverso para enfrentar um novo e misterioso adversário.",
-        plataform_Stream:"Disney+",
-        data_release: "5 de maio de 2022 ",
-        rating: 2,
-        numReviews: 100,
-    },
-    {
-        
-        name:"Animais Fantásticos: Os Segredos de Dumbledore",
-        imageURL:"https://ingresso-a.akamaihd.net/prd/img/movie/animais-fantasticos-os-segredos-de-dumbledore/70f27af7-cae0-4a08-82ae-e80a933dde68.jpg",
-        category: ["Aventura", "Fantasia"],
-        age_rating: 16,
-        duration: "2 Horas 22 Minutos",
-        trailer: "https://www.youtube.com/watch?v=5SjYFF2g35c",
-        sinopse: "O professor Alvo Dumbledore (Jude Law) sabe que o poderoso mago das trevas Gellert Grindelwald (Mads Mikkelsen) está se movimentando para assumir o controle do mundo mágico.",
-        plataform_Stream:"HBO Max",
-        data_release: "14 de abril de 2022 ",
-        rating: 5,
-        numReviews: 70,
-    },
-    {
-        
-        name:"SONIC 2 - O FILME",
-        imageURL:"https://br.web.img2.acsta.net/pictures/21/12/08/15/46/3923761.jpg",
-        category: ["Aventura", "Fantasia", "animação"],
-        age_rating: 16,
-        duration: "2 Horas 22 Minutos",
-        trailer: "https://www.youtube.com/watch?v=5SjYFF2g35c",
-        sinopse: "O professor Alvo Dumbledore (Jude Law) sabe que o poderoso mago das trevas Gellert Grindelwald (Mads Mikkelsen) está se movimentando para assumir o controle do mundo mágico.",
-        plataform_Stream:"HBO Max",
-        data_release: "14 de abril de 2022 ",
-        rating: 5,
-        numReviews: 70,
-    },
-    {
-        
-        name:"Morbius",
-        imageURL:"https://conteudo.imguol.com.br/c/splash/a7/2022/03/29/cartaz-de-morbius-1648582369158_v2_3x4.jpg",
-        category: ["Aventura", "Fantasia"],
-        age_rating: 16,
-        duration: "2 Horas 22 Minutos",
-        trailer: "https://www.youtube.com/watch?v=5SjYFF2g35c",
-        sinopse: "O professor Alvo Dumbledore (Jude Law) sabe que o poderoso mago das trevas Gellert Grindelwald (Mads Mikkelsen) está se movimentando para assumir o controle do mundo mágico.",
-        plataform_Stream:"HBO Max",
-        data_release: "14 de abril de 2022 ",
-        rating: 5,
-        numReviews: 70,
-    },
-    {
-        name:"Klondike: A Guerra na Ucrânia",
-        imageURL:"https://ingresso-a.akamaihd.net/prd/img/movie/klondike-a-guerra-da-ucrania/6730cef9-e0a7-4ab7-984e-4a6af0982bc8.jpg",
-        category: ["Ação", "Aventura", "Fantasia"],
-        age_rating: 12,
-        duration: "2 Horas 6 Minutos",
-        trailer: "https://www.youtube.com/watch?v=X23XCFgdh2M",
-        sinopse: "O aguardado filme trata da jornada do Doutor Estranho rumo ao desconhecido. Além de receber ajuda de novos aliados místicos e outros já conhecidos do público, o personagem atravessa as realidades alternativas incompreensíveis e perigosas do Multiverso para enfrentar um novo e misterioso adversário.",
-        plataform_Stream:"Disney+",
-        data_release: "5 de maio de 2022 ",
-        rating: 2,
-        numReviews: 100,
-    }
-] */
-  
 
   
 function Rating({ rating, numReviews }) {
@@ -134,29 +58,13 @@ function CardMovie() {
     const [info, setInfo] = useState({})
     let [page, setPage] = useState(1)
     const dispatch = useDispatch()
-
+    const token = JSON.parse(localStorage.getItem("@token"))
     const moviesData = useSelector((state) => state.movies)
 
     useEffect(() => {
         dispatch(listMoviesThunk(page)) 
     },[page])
-
-
-    /* let incialPage = 1
     
-    const nextPage = () => {
-        dispatch(listMoviesThunk(incialPage += 1)) 
-
-    }
-
-    const previusPage = () => {
-        dispatch(listMoviesThunk(incialPage -= 1)) 
-    }
-
-    console.log(incialPage) */
-    
-       
-      
 return (
     <>
     <Flex p={10} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="row" flexWrap="wrap">
@@ -265,7 +173,12 @@ return (
                             Plataformas de Streaming: {info.plataform_stream} 
                         </Box>
 
-                        <Button colorScheme="red" width="200px" mt="10px">Comprar Ingresso</Button>
+                        <Button colorScheme="red" width="200px" mt="10px" onClick={() => {
+                            if(token === null) {
+                                toast.error("Para comprar ingresso tem que logar")
+                            }
+                        }}
+                        >Comprar Ingresso</Button>
                     </Box>
                 </Flex>
                 </ModalBody>
