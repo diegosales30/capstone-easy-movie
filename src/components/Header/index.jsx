@@ -2,44 +2,43 @@ import {
   Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
+  VStack,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Heading,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon, SearchIcon } from '@chakra-ui/icons';
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
+export default function Header() {
 
-export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box w={'100%'} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Easy.Movie</Box>
-
+          <Box>
+            <Heading fontSize={'3xl'} color={'#E50914'}>Easy.Movie</Heading>
+          </Box>
+          <VStack>
+            <InputGroup>
+              <Input />
+              <InputLeftElement>
+                <SearchIcon/>
+              </InputLeftElement>
+            </InputGroup>
+          </VStack>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
               <Button onClick={toggleColorMode}>
@@ -55,7 +54,8 @@ export default function Nav() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    name='Dan Abrahmov'
+                    src='https://bit.ly/dan-abramov'
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -63,12 +63,12 @@ export default function Nav() {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src='https://bit.ly/dan-abramov'
                     />
                   </Center>
                   <br />
                   <Center>
-                    <p>Jonhson</p>
+                    <p>Dan Abrahmov</p>
                   </Center>
                   <br />
                   <MenuDivider />

@@ -13,7 +13,7 @@ import { LockIcon, UnlockIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const LoginForm = () => {
   
