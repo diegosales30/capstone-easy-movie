@@ -19,12 +19,13 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon, SearchIcon } from '@chakra-ui/icons';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Header() {
   const token = JSON.parse(localStorage.getItem("@token"));
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const navigate = useNavigate();
 
   return (
     <>
@@ -47,19 +48,10 @@ export default function Header() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
                   {token === null ?
-                  <Avatar
-                    size={'sm'}
-                    name='Usuario não Logado'
-                    src='https://img2.gratispng.com/20180402/ojw/kisspng-united-states-avatar-organization-information-user-avatar-5ac20804a62b58.8673620215226654766806.jpg'
-                    />
+                  <Button variant="solid" colorScheme="red" onClick={() => {
+                    navigate("/login");
+                  }}>Logar</Button>
                     :
                     <Avatar
                     size={'sm'}
@@ -68,7 +60,14 @@ export default function Header() {
                     />
                   }
                   
-                </MenuButton>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                  </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
                   
