@@ -13,7 +13,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../../components/FormRegister';
 
-export default function Register() {
+ const Register = () => {
 
   const navigate = useNavigate()
 
@@ -64,3 +64,4 @@ export default function Register() {
     </VStack>
   );
 }
+export default Register;
