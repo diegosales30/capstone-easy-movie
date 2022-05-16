@@ -22,9 +22,8 @@ import { listMoviesThunk } from '../../store/modules/movies/thunk';
 import { toast } from 'react-toastify';
 
 
+const  Rating = ({ rating, numReviews }) => {
 
-  
-function Rating({ rating, numReviews }) {
       
     return (
       <Box d="flex" alignItems="center">
@@ -53,7 +52,7 @@ function Rating({ rating, numReviews }) {
     );
 }
   
-function CardMovie() {
+const CardMovie = () => {
     const {isOpen, onOpen, onClose} =  useDisclosure()
     const [info, setInfo] = useState({})
     let [page, setPage] = useState(1)
@@ -64,7 +63,7 @@ function CardMovie() {
     useEffect(() => {
         dispatch(listMoviesThunk(page)) 
     },[page])
-    
+
 return (
     <>
     <Flex p={10} w="100%" display="flex" alignItems="center" justifyContent="center" flexDirection="row" flexWrap="wrap">
@@ -122,10 +121,6 @@ return (
         </Flex>
             </Box>
             
-        {/* <Flex justifyContent="space-between" alignContent="center">
-            <Rating rating={movie.rating} numReviews={movie.numReviews} />
-            <Box fontSize="10px" color='gray.800'></Box>
-        </Flex> */}
         </Box>
         </Box>
         
