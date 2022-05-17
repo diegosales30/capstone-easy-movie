@@ -52,46 +52,60 @@ export default function Header() {
               {token === "null" ? (
                 <Button
                   variant="solid"
-                  bg={'#E50914'}
+                  bg={"#E50914"}
                   color="white"
-                  onClick={() => { navigate("/login"); }}
+                  onClick={() => {
+                    navigate("/login");
+                  }}
                 >
                   Logar
                 </Button>
               ) : (
                 <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
+                  <MenuButton
+                    as={Button}
+                    rounded={"full"}
+                    variant={"link"}
+                    cursor={"pointer"}
+                    minW={0}
+                  >
                     <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      size={"sm"}
+                      src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Seus Ingressos</MenuItem>
-                  <MenuItem onClick={() => { 
-                    localStorage.clear()
-                    navigate('/')
-                  }}>Sair</MenuItem>
-                </MenuList>
-              </Menu>
+                  </MenuButton>
+                  <MenuList alignItems={"center"}>
+                    <br />
+                    <Center>
+                      <Avatar
+                        size={"2xl"}
+                        src={
+                          "https://avatars.dicebear.com/api/male/username.svg"
+                        }
+                      />
+                    </Center>
+                    <br />
+                    <Center>
+                      <p>Username</p>
+                    </Center>
+                    <br />
+                    <MenuDivider />
+                    <MenuItem>Seus Ingressos</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.clear();
+
+                        setTimeout(() => {
+                          window.location.reload("/");
+                          //refatorar para não recarregar a pagina
+                        }, 200);
+                        //navigate("/");
+                      }}
+                    >
+                      Sair
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               )}
             </Stack>
           </Flex>

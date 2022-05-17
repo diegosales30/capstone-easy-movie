@@ -19,6 +19,7 @@ export const signInThunk = (userData) => (dispatch) => {
       dispatch(signIn(response.data));
     })
     .catch((err) => {
+      toast.error("Usuário ou senha inválidos!");
       console.log(err);
     });
 };
