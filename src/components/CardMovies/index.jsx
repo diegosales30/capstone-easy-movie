@@ -54,7 +54,7 @@ const CardMovie = () => {
   const [info, setInfo] = useState({});
   let [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.stringify(localStorage.getItem("@token"));
   const moviesData = useSelector((state) => state.movies);
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import CardMovie from "../../components/CardMovies";
 import Header from "../../components/Header";
 
 const Home = () => {
+  
   return (
     <>
       <Header />
