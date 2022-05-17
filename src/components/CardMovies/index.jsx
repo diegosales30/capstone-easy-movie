@@ -54,7 +54,7 @@ const CardMovie = () => {
   const [info, setInfo] = useState({});
   let [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("@token"));
   const moviesData = useSelector((state) => state.movies);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const CardMovie = () => {
             _dark={{ bg: "#6666" }}
             maxW="sm"
             width="260px"
-            height="auto"
+            height="335px"
             borderWidth="1px"
             rounded="lg"
             shadow="lg"
@@ -107,11 +107,11 @@ const CardMovie = () => {
                   <Box
                     fontSize="13px"
                     fontWeight="semibold"
-                    as="h4"
+                    as="h6"
                     lineHeight="tight"
                     isTruncated
                     textAlign="left"
-                    width="145px"
+                    width="155px"
                     display="flex"
                     alignItems="center"
                     fontFamily="sans-serif"

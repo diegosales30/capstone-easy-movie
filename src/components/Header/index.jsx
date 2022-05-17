@@ -19,10 +19,13 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon, SearchIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Header() {
-
+  const token = JSON.parse(localStorage.getItem("@token"));
   const { colorMode, toggleColorMode } = useColorMode();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -45,21 +48,44 @@ export default function Header() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
+                  {token === null ?
+                  <Button variant="solid" colorScheme="red" onClick={() => {
+                    navigate("/login");
+                  }}>Logar</Button>
+                    :
+                    <Avatar
                     size={'sm'}
                     name='Dan Abrahmov'
                     src='https://bit.ly/dan-abramov'
-                  />
-                </MenuButton>
+                    />
+                  }
+                  
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                  </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
+                  
+                  {token === null ? 
+                  <>
+                  <Center>
+                    <Avatar
+                      size={'2xl'}
+                      src='https://img2.gratispng.com/20180402/ojw/kisspng-united-states-avatar-organization-information-user-avatar-5ac20804a62b58.8673620215226654766806.jpg'
+                    />
+                    </Center>
+                    <br />
+                    <Center>
+                      <p>Usuario não Logado</p>
+                  </Center>
+                  </>
+                  :
+                  <>
                   <Center>
                     <Avatar
                       size={'2xl'}
@@ -70,6 +96,8 @@ export default function Header() {
                   <Center>
                     <p>Dan Abrahmov</p>
                   </Center>
+                  </>
+                  }
                   <br />
                   <MenuDivider />
                   <MenuItem>Suas Compras</MenuItem>
