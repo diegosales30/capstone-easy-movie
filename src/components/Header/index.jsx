@@ -52,10 +52,9 @@ export default function Header() {
               {token === null ? (
                 <Button
                   variant="solid"
-                  colorScheme="red"
-                  onClick={() => {
-                    navigate("/login");
-                  }}
+                  bg={'#E50914'}
+                  color="white"
+                  onClick={() => { navigate("/login"); }}
                 >
                   Logar
                 </Button>

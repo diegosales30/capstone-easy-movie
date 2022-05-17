@@ -1,6 +1,7 @@
 import {
   Flex,
   Box,
+  Text,
   Image,
   chakra,
   Tooltip,
@@ -66,6 +67,7 @@ const CardMovie = () => {
       <Flex
         p={10}
         w="100%"
+        maxW='1280px'
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -87,7 +89,8 @@ const CardMovie = () => {
             flexDirection="column"
             margin="10px"
             key={movie.id}
-          >
+            _hover={{ transition: 'all 0.7s', transform: 'scale(1.1)'}}
+          > 
             <Image
               src={movie.image}
               alt={`Picture of ${movie.name}`}
@@ -104,19 +107,21 @@ const CardMovie = () => {
                   display="flex"
                   w="100%"
                 >
-                  <Box
-                    fontSize="13px"
-                    fontWeight="semibold"
-                    as="h6"
-                    lineHeight="tight"
-                    textAlign="left"
+                  <Flex
+                    align={'center'}
+                    justify='flex-start'
                     width="155px"
-                    display="flex"
-                    alignItems="center"
-                    fontFamily="sans-serif"
                   >
-                    {movie.name}
-                  </Box>
+                    <Text
+                      fontSize={'1xl'}
+                      fontWeight='semibold'
+                      textAlign={'left'}
+                      fontFamily='Helvetica, sans-serif'
+                      noOfLines={1}
+                    >
+                      {movie.name}
+                    </Text>
+                  </Flex>
                   <Tooltip
                     bg="white"
                     placement={"top"}
@@ -126,7 +131,8 @@ const CardMovie = () => {
                     <chakra.a href={"#"} display={"flex"}>
                       <Button
                         fontFamily="sans-serif"
-                        colorScheme="red"
+                        bg={'#E50914'}
+                        color="white"
                         size="xs"
                         alignSelf={"center"}
                         onClick={() => {
@@ -249,7 +255,8 @@ const CardMovie = () => {
                     </Box>
 
                     <Button
-                      colorScheme="red"
+                      bg={'#E50914'}
+                      color="white"
                       width="200px"
                       mt="10px"
                       onClick={() => {
@@ -270,14 +277,16 @@ const CardMovie = () => {
       <Box marginTop="10px" display="flex" justifyContent="center">
         <Button
           fontFamily="sans-serif"
-          colorScheme="red"
+          bg={'#E50914'}
+          color="white"
           onClick={() => setPage((page -= 1))}
         >
           Pagina Anterior
         </Button>
         <Button
           fontFamily="sans-serif"
-          colorScheme="red"
+          bg={'#E50914'}
+          color="white"
           marginLeft="10px"
           onClick={() => setPage((page += 1))}
         >

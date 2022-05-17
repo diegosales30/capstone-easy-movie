@@ -3,7 +3,7 @@ import { listMovies } from "./actions";
 
 export const listMoviesThunk = (next) => (dispatch) => {
   axios
-    .get(`https://easy-movie.herokuapp.com/movies?_page=${next}&_limit=6`)
+    .get(`https://easy-movie.herokuapp.com/movies?_page=${next}&_limit=8`)
     .then((response) => {
       dispatch(listMovies(response.data));
     })
