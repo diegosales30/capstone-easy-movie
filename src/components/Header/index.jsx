@@ -22,7 +22,7 @@ import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.stringify(localStorage.getItem("@token"));
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export default function Header() {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              {token === null ? (
+              {token === "null" ? (
                 <Button
                   variant="solid"
                   colorScheme="red"
@@ -60,55 +60,40 @@ export default function Header() {
                   Logar
                 </Button>
               ) : (
-                <Avatar
-                  size={"sm"}
-                  name="Dan Abrahmov"
-                  src="https://bit.ly/dan-abramov"
-                />
-              )}
-
-              <Menu>
+                <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={"full"}
-                  variant={"link"}
-                  cursor={"pointer"}
-                  minW={0}
-                ></MenuButton>
-                <MenuList alignItems={"center"}>
+                  rounded={'full'}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={0}>
+                  <Avatar
+                    size={'sm'}
+                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                  />
+                </MenuButton>
+                <MenuList alignItems={'center'}>
                   <br />
-
-                  {token === null ? (
-                    <>
-                      <Center>
-                        <Avatar
-                          size={"2xl"}
-                          src="https://img2.gratispng.com/20180402/ojw/kisspng-united-states-avatar-organization-information-user-avatar-5ac20804a62b58.8673620215226654766806.jpg"
-                        />
-                      </Center>
-                      <br />
-                      <Center>
-                        <p>Usuario não Logado</p>
-                      </Center>
-                    </>
-                  ) : (
-                    <>
-                      <Center>
-                        <Avatar size={"2xl"} src="https://bit.ly/dan-abramov" />
-                      </Center>
-                      <br />
-                      <Center>
-                        <p>Dan Abrahmov</p>
-                      </Center>
-                    </>
-                  )}
+                  <Center>
+                    <Avatar
+                      size={'2xl'}
+                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    />
+                  </Center>
+                  <br />
+                  <Center>
+                    <p>Username</p>
+                  </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Suas Compras</MenuItem>
-                  <MenuItem>Gerenciar Conta</MenuItem>
-                  <MenuItem>Deslogar</MenuItem>
+                  <MenuItem>Seus Ingressos</MenuItem>
+                  <MenuItem onClick={() => { 
+                    localStorage.clear()
+                    navigate('/')
+                  }}>Sair</MenuItem>
                 </MenuList>
               </Menu>
+              )}
             </Stack>
           </Flex>
         </Flex>
