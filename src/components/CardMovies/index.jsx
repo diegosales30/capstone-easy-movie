@@ -54,7 +54,7 @@ const CardMovie = () => {
   const [info, setInfo] = useState({});
   let [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("@token"));
+  const token = JSON.parse(localStorage.getItem("token"));
   const moviesData = useSelector((state) => state.movies);
 
   useEffect(() => {
@@ -109,7 +109,6 @@ const CardMovie = () => {
                     fontWeight="semibold"
                     as="h6"
                     lineHeight="tight"
-                    isTruncated
                     textAlign="left"
                     width="155px"
                     display="flex"
