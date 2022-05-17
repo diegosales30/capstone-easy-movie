@@ -20,10 +20,17 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 export default function Header() {
+
   const token = JSON.stringify(localStorage.getItem("@token"));
+
   const { colorMode, toggleColorMode } = useColorMode();
+  
+  const { username }  = useSelector(state => state.signIn.user || '')
+
   const navigate = useNavigate();
 
   return (
@@ -55,6 +62,7 @@ export default function Header() {
                   bg={"#E50914"}
                   color="white"
                   onClick={() => {
+                    localStorage.clear()
                     navigate("/login");
                   }}
                 >
@@ -86,7 +94,7 @@ export default function Header() {
                     </Center>
                     <br />
                     <Center>
-                      <p>Username</p>
+                      <p>{username}</p>
                     </Center>
                     <br />
                     <MenuDivider />

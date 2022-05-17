@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from "react-redux";
 import { signInThunk } from "../../store/modules/user/thunk";
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
@@ -47,10 +48,11 @@ const LoginForm = () => {
   const invalidEmail = () => (errors.email ? true : false);
   const invalidPassword = () => (errors.password ? true : false);
 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    return dispatch(signInThunk(data));
+    return dispatch(signInThunk(data, navigate));
   };
 
   return (
