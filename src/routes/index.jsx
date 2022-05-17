@@ -1,16 +1,36 @@
-import { Routes, Route } from "react-router-dom";
-
-import Home from "../pages/Home";
+import {  Routes ,Route } from "react-router-dom";
+import { RequireAuth, FreeAuth } from "./routes.js"
+import CardMovie from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-const Rotas = () => {
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/register" element={<Register />}></Route>
-      <Route path="/" element={<Home />}></Route>
-    </Routes>
-  );
-};
 
-export default Rotas;
+
+const Router = () => {
+    return(
+            <Routes>
+                <Route path="/login"  
+                    element={
+                    <FreeAuth>
+                        <Login/>
+                    </FreeAuth>}
+                    />
+                <Route path="/register" 
+                    element={
+                    <FreeAuth>
+                        <Register/>
+                    </FreeAuth>
+                    }/>
+                <Route path="/" 
+                    element={
+                    <CardMovie/>}
+                    />
+                <Route path="/buy" 
+                    element={
+                    <RequireAuth>
+                        {/* buy tickets vai aqui */}
+                    </RequireAuth>
+                    }/>
+            </Routes>
+    )
+}
+export default Router

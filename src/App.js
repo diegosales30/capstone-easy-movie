@@ -1,7 +1,7 @@
-import CardMovie from "./pages/Home";
+
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import Rotas from "./routes";
+import Router from "./routes";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         draggable
         pauseOnHover
       />
-      <Rotas />
+      <Router />
     </>
   );
 };
