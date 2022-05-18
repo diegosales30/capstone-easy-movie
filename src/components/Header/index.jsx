@@ -22,14 +22,12 @@ import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 export default function Header() {
-
   const token = JSON.stringify(localStorage.getItem("@token"));
 
   const { colorMode, toggleColorMode } = useColorMode();
-  
-  const { username }  = useSelector(state => state.signIn.user || '')
+
+  const { username } = useSelector((state) => state.signIn.user || "");
 
   const navigate = useNavigate();
 
@@ -38,8 +36,8 @@ export default function Header() {
       <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Heading fontSize={"3xl"} color={"#E50914"}>
-              Easy.Movie
+            <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
+              Easy Movie
             </Heading>
           </Box>
           <VStack>
@@ -62,7 +60,7 @@ export default function Header() {
                   bg={"#E50914"}
                   color="white"
                   onClick={() => {
-                    localStorage.clear()
+                    localStorage.clear();
                     navigate("/login");
                   }}
                 >
