@@ -239,7 +239,7 @@ const CardMovie = () => {
           <Modal isOpen={isOpen} onClose={onClose} size="xl">
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader textAlign="center" fontSize="15px">
+              <ModalHeader textAlign="center" fontSize="26px">
                 {info.name}
               </ModalHeader>
               <ModalCloseButton />
