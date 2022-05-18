@@ -339,20 +339,21 @@ const CardMovie = () => {
                     >
                       Plataformas de Streaming: {info.plataform_stream}
                     </Box>
-
+                  {info.movie_session.status && 
                     <Button
-                      bg={'#E50914'}
-                      color="white"
-                      width="200px"
-                      mt="10px"
-                      onClick={() => {
-                        if (token === null) {
-                          toast.error("Para comprar ingresso tem que logar");
-                        }
-                      }}
+                    bg={'#E50914'}
+                    color="white"
+                    width="200px"
+                    mt="10px"
+                    onClick={() => {
+                      if (token === null) {
+                        toast.error("Para comprar ingresso tem que logar");
+                      }
+                    }}
                     >
                       Comprar Ingresso
                     </Button>
+                    }
                   </Box>
                 </Flex>
               </ModalBody>
