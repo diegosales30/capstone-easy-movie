@@ -343,8 +343,7 @@ const CardMovie = () => {
                         if (token === null) {
                           toast.error("Para comprar ingresso tem que logar");
                         } else {
-                          setMovie(info.id);
-
+                          localStorage.setItem("@idMovie", info.id);
                           navigate("/buy");
                         }
                       }}

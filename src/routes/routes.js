@@ -2,6 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("@token") || "";
 let authed = !!token;
+console.log(authed);
 export const RequireAuth = ({ children: Children }) => {
   let location = useLocation();
 

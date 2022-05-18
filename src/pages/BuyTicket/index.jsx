@@ -52,10 +52,10 @@ const BuyTicket = ({ movie }) => {
   const [selectedCity, setSelectedCity] = useState([]);
   const [selectedCinema, setSelectedCinema] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
-
+  const id = localStorage.getItem("@idMovie");
   const getMovie = () => {
     axios
-      .get(`https://easy-movie.herokuapp.com/movies?id=4`)
+      .get(`https://easy-movie.herokuapp.com/movies?id=${id}`)
       .then((response) => {
         setSelectedMovie(response.data);
       })
