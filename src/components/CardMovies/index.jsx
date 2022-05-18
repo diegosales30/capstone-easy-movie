@@ -292,7 +292,7 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Classificação Indicativa: {info.age_rating} Anos
+                      Classificação Indicativa: {info.age_rating === 0 ? "Livre" : info.age_rating + " anos"}
                     </Box>
                     <Box
                       as="h5"
