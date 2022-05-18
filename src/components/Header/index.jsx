@@ -21,6 +21,9 @@ import {
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
+import { useDispatch } from "react-redux";
 
 export default function Header() {
   const token = JSON.stringify(localStorage.getItem("@token"));
@@ -30,6 +33,12 @@ export default function Header() {
   const { username } = useSelector((state) => state.signIn.user || "");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSearch = () => {
+    dispatch(searchMoviesThunk(inputValue));
+  };
 
   return (
     <>
@@ -42,9 +51,9 @@ export default function Header() {
           </Box>
           <VStack>
             <InputGroup>
-              <Input />
+              <Input onChange={(e) => setInputValue(e.target.value)} />
               <InputLeftElement>
-                <SearchIcon />
+                <SearchIcon cursor="pointer" onClick={handleSearch} />
               </InputLeftElement>
             </InputGroup>
           </VStack>
