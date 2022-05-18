@@ -25,42 +25,35 @@ import { useState, useEffect } from "react";
 import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
 import { useDispatch } from "react-redux";
 
-
 export default function Header() {
-
   const token = JSON.stringify(localStorage.getItem("@token"));
 
   const { colorMode, toggleColorMode } = useColorMode();
-  
-  const { username }  = useSelector(state => state.signIn.user || '')
+
+  const { username } = useSelector((state) => state.signIn.user || "");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
   const handleSearch = () => {
-    dispatch(searchMoviesThunk(inputValue))
-  }
-  
-  
+    dispatch(searchMoviesThunk(inputValue));
+  };
+
   return (
     <>
       <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Heading fontSize={"3xl"} color={"#E50914"} onClick={() => {
-              setTimeout(() => {
-                window.location.reload("/");
-              },200)
-            }} cursor="pointer">
-              Easy.Movie
+            <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
+              Easy Movie
             </Heading>
           </Box>
           <VStack>
             <InputGroup>
-              <Input onChange={(e) => setInputValue(e.target.value)}/>
+              <Input onChange={(e) => setInputValue(e.target.value)} />
               <InputLeftElement>
-                <SearchIcon cursor="pointer" onClick={handleSearch}/>
+                <SearchIcon cursor="pointer" onClick={handleSearch} />
               </InputLeftElement>
             </InputGroup>
           </VStack>
@@ -76,7 +69,7 @@ export default function Header() {
                   bg={"#E50914"}
                   color="white"
                   onClick={() => {
-                    localStorage.clear()
+                    localStorage.clear();
                     navigate("/login");
                   }}
                 >

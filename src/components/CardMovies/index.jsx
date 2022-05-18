@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { listMoviesThunk } from "../../store/modules/movies/thunk";
 import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Rating = ({ rating, numReviews }) => {
   return (
@@ -55,9 +56,12 @@ const CardMovie = () => {
   const [info, setInfo] = useState({});
   let [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const token = JSON.stringify(localStorage.getItem("@token"));
+  const token = JSON.stringify(localStorage.getItem("@token") || "");
   const moviesData = useSelector((state) => state.movies);
-  const searchMovies = useSelector((state) => state.moviesSearch)
+  const searchMovies = useSelector((state) => state.moviesSearch);
+  const [movie, setMovie] = useState([0]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(listMoviesThunk(page));
@@ -68,7 +72,7 @@ const CardMovie = () => {
       <Flex
         p={10}
         w="100%"
-        maxW='1280px'
+        maxW="1280px"
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -76,167 +80,158 @@ const CardMovie = () => {
         flexWrap="wrap"
         padding="40px 10%"
       >
-    
-      {searchMovies.length === 0 ?
-      <>
-        {moviesData.map((movie) => (
-          <Box
-            bg="#F5F4F3"
-            _dark={{ bg: "#6666" }}
-            maxW="sm"
-            width="200px"
-            height="335px"
-            borderWidth="1px"
-            rounded="lg"
-            shadow="lg"
-            position="relative"
-            d="flex"
-            flexDirection="column"
-            margin="10px"
-            key={movie.id}
-            _hover={{ transition: 'all 0.7s', transform: 'scale(1.1)'}}
-          > 
-            <Image
-              src={movie.image}
-              alt={`Picture of ${movie.name}`}
-              roundedTop="lg"
-              width="100%"
-              height="250px"
-            />
-            <Box p="4" display="flex" flexDirection="column">
-              <Box d="flex" alignItems="baseline" flexDirection="column">
-                <Flex
-                  mt="1"
-                  justifyContent="space-between"
-                  alignContent="center"
-                  display="flex"
-                  w="100%"
-                >
-                  <Flex
-                    align={'center'}
-                    justify='flex-start'
-                    width="155px"
-                  >
-                    <Text
-                      fontSize={'1xl'}
-                      fontWeight='semibold'
-                      textAlign={'left'}
-                      fontFamily='Helvetica, sans-serif'
-                      noOfLines={2}
+        {searchMovies.length === 0 ? (
+          <>
+            {moviesData.map((movie) => (
+              <Box
+                bg="#F5F4F3"
+                _dark={{ bg: "#6666" }}
+                maxW="sm"
+                width="200px"
+                height="335px"
+                borderWidth="1px"
+                rounded="lg"
+                shadow="lg"
+                position="relative"
+                d="flex"
+                flexDirection="column"
+                margin="10px"
+                key={movie.id}
+                _hover={{ transition: "all 0.7s", transform: "scale(1.1)" }}
+              >
+                <Image
+                  src={movie.image}
+                  alt={`Picture of ${movie.name}`}
+                  roundedTop="lg"
+                  width="100%"
+                  height="250px"
+                />
+                <Box p="4" display="flex" flexDirection="column">
+                  <Box d="flex" alignItems="baseline" flexDirection="column">
+                    <Flex
+                      mt="1"
+                      justifyContent="space-between"
+                      alignContent="center"
+                      display="flex"
+                      w="100%"
                     >
-                      {movie.name}
-                    </Text>
-                  </Flex>
-                  <Tooltip
-                    bg="white"
-                    placement={"top"}
-                    color={"gray.800"}
-                    fontSize={"1em"}
-                  >
-                    <chakra.a href={"#"} display={"flex"}>
-                      <Button
-                        fontFamily="sans-serif"
-                        bg={'#E50914'}
-                        color="white"
-                        size="xs"
-                        colorScheme={"red"}
-                        alignSelf={"center"}
-                        onClick={() => {
-                          onOpen();
-                          setInfo(movie);
-                        }}
+                      <Flex align={"center"} justify="flex-start" width="155px">
+                        <Text
+                          fontSize={"1xl"}
+                          fontWeight="semibold"
+                          textAlign={"left"}
+                          fontFamily="Helvetica, sans-serif"
+                          noOfLines={2}
+                        >
+                          {movie.name}
+                        </Text>
+                      </Flex>
+                      <Tooltip
+                        bg="white"
+                        placement={"top"}
+                        color={"gray.800"}
+                        fontSize={"1em"}
                       >
-                        Ver Mais
-                      </Button>
-                    </chakra.a>
-                  </Tooltip>
-                </Flex>
+                        <chakra.a href={"#"} display={"flex"}>
+                          <Button
+                            fontFamily="sans-serif"
+                            bg={"#E50914"}
+                            color="white"
+                            size="xs"
+                            colorScheme={"red"}
+                            alignSelf={"center"}
+                            onClick={() => {
+                              onOpen();
+                              setInfo(movie);
+                            }}
+                          >
+                            Ver Mais
+                          </Button>
+                        </chakra.a>
+                      </Tooltip>
+                    </Flex>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-          </Box>
-        ))}
-        </>
-        :
-        <>              
-        {searchMovies.map((movie) => (
-          <Box
-            bg="#F5F4F3"
-            _dark={{ bg: "#6666" }}
-            maxW="sm"
-            width="200px"
-            height="335px"
-            borderWidth="1px"
-            rounded="lg"
-            shadow="lg"
-            position="relative"
-            d="flex"
-            flexDirection="column"
-            margin="10px"
-            key={movie.id}
-            _hover={{ transition: 'all 0.7s', transform: 'scale(1.1)'}}
-          > 
-            <Image
-              src={movie.image}
-              alt={`Picture of ${movie.name}`}
-              roundedTop="lg"
-              width="100%"
-              height="250px"
-            />
-            <Box p="4" display="flex" flexDirection="column">
-              <Box d="flex" alignItems="baseline" flexDirection="column">
-                <Flex
-                  mt="1"
-                  justifyContent="space-between"
-                  alignContent="center"
-                  display="flex"
-                  w="100%"
-                >
-                  <Flex
-                    align={'center'}
-                    justify='flex-start'
-                    width="155px"
-                  >
-                    <Text
-                      fontSize={'1xl'}
-                      fontWeight='semibold'
-                      textAlign={'left'}
-                      fontFamily='Helvetica, sans-serif'
-                      noOfLines={2}
+            ))}
+          </>
+        ) : (
+          <>
+            {searchMovies.map((movie) => (
+              <Box
+                bg="#F5F4F3"
+                _dark={{ bg: "#6666" }}
+                maxW="sm"
+                width="200px"
+                height="335px"
+                borderWidth="1px"
+                rounded="lg"
+                shadow="lg"
+                position="relative"
+                d="flex"
+                flexDirection="column"
+                margin="10px"
+                key={movie.id}
+                _hover={{ transition: "all 0.7s", transform: "scale(1.1)" }}
+              >
+                <Image
+                  src={movie.image}
+                  alt={`Picture of ${movie.name}`}
+                  roundedTop="lg"
+                  width="100%"
+                  height="250px"
+                />
+                <Box p="4" display="flex" flexDirection="column">
+                  <Box d="flex" alignItems="baseline" flexDirection="column">
+                    <Flex
+                      mt="1"
+                      justifyContent="space-between"
+                      alignContent="center"
+                      display="flex"
+                      w="100%"
                     >
-                      {movie.name}
-                    </Text>
-                  </Flex>
-                  <Tooltip
-                    bg="white"
-                    placement={"top"}
-                    color={"gray.800"}
-                    fontSize={"1em"}
-                  >
-                    <chakra.a href={"#"} display={"flex"}>
-                      <Button
-                        fontFamily="sans-serif"
-                        bg={'#E50914'}
-                        color="white"
-                        size="xs"
-                        alignSelf={"center"}
-                        colorScheme={"red"}
-                        onClick={() => {
-                          onOpen();
-                          setInfo(movie);
-                        }}
+                      <Flex align={"center"} justify="flex-start" width="155px">
+                        <Text
+                          fontSize={"1xl"}
+                          fontWeight="semibold"
+                          textAlign={"left"}
+                          fontFamily="Helvetica, sans-serif"
+                          noOfLines={2}
+                        >
+                          {movie.name}
+                        </Text>
+                      </Flex>
+                      <Tooltip
+                        bg="white"
+                        placement={"top"}
+                        color={"gray.800"}
+                        fontSize={"1em"}
                       >
-                        Ver Mais
-                      </Button>
-                    </chakra.a>
-                  </Tooltip>
-                </Flex>
+                        <chakra.a href={"#"} display={"flex"}>
+                          <Button
+                            fontFamily="sans-serif"
+                            bg={"#E50914"}
+                            color="white"
+                            size="xs"
+                            alignSelf={"center"}
+                            colorScheme={"red"}
+                            onClick={() => {
+                              onOpen();
+                              setInfo(movie);
+                            }}
+                          >
+                            Ver Mais
+                          </Button>
+                        </chakra.a>
+                      </Tooltip>
+                    </Flex>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-          </Box>
-        ))}
-        </> 
-      }
-  
+            ))}
+          </>
+        )}
+
         <Box>
           <Modal isOpen={isOpen} onClose={onClose} size="xl">
             <ModalOverlay />
@@ -278,9 +273,12 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Categoria: {info.category?.map((element, index) => {
-                        return index === info.category.length - 1 ? element : (element + ', ')
-                      } )} 
+                      Categoria:{" "}
+                      {info.category?.map((element, index) => {
+                        return index === info.category.length - 1
+                          ? element
+                          : element + ", ";
+                      })}
                     </Box>
                     {/* ESSA LÓGICA ACIMA, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
                     <Box
@@ -297,7 +295,10 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Classificação Indicativa: {info.age_rating === 0 ? "Livre" : info.age_rating + " anos"}
+                      Classificação Indicativa:{" "}
+                      {info.age_rating === 0
+                        ? "Livre"
+                        : info.age_rating + " anos"}
                     </Box>
                     <Box
                       as="h5"
@@ -344,22 +345,25 @@ const CardMovie = () => {
                     >
                       Plataformas de Streaming: {info.plataform_stream}
                     </Box>
-                  {info.movie_session?.status && 
-                    <Button
-                    bg={'#E50914'}
-                    color="white"
-                    width="200px"
-                    mt="10px"
-                    colorScheme={'red'}
-                    onClick={() => {
-                      if (token === null) {
-                        toast.error("Para comprar ingresso tem que logar");
-                      }
-                    }}
-                    >
-                      Comprar Ingresso
-                    </Button>
-                    }
+                    {info.movie_session?.status && (
+                      <Button
+                        bg={"#E50914"}
+                        color="white"
+                        width="200px"
+                        mt="10px"
+                        colorScheme={"red"}
+                        onClick={() => {
+                          if (token === null) {
+                            toast.error("Para comprar ingresso tem que logar");
+                          } else {
+                            localStorage.setItem("@idMovie", info.id);
+                            navigate("/buy");
+                          }
+                        }}
+                      >
+                        Comprar Ingresso
+                      </Button>
+                    )}
                   </Box>
                 </Flex>
               </ModalBody>
@@ -368,30 +372,30 @@ const CardMovie = () => {
         </Box>
       </Flex>
       <Box marginTop="10px" display="flex" justifyContent="center">
-        {page !== 1 &&
+        {page !== 1 && (
           <Button
             fontFamily="sans-serif"
-            bg={'#E50914'}
+            bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            colorScheme={'red'}
-            onClick={() => setPage((page - 1))}
+            colorScheme={"red"}
+            onClick={() => setPage(page - 1)}
           >
             Página anteriror
           </Button>
-        }
-          {moviesData.length === 8 &&
+        )}
+        {moviesData.length === 8 && (
           <Button
-          fontFamily="sans-serif"
-          bg={'#E50914'}
-          color="white"
-          marginLeft="10px"
-          colorScheme={'red'}
-          onClick={() => setPage((page + 1))}
+            fontFamily="sans-serif"
+            bg={"#E50914"}
+            color="white"
+            marginLeft="10px"
+            colorScheme={"red"}
+            onClick={() => setPage(page + 1)}
           >
-          Próxima página
+            Próxima página
           </Button>
-          }
+        )}
       </Box>
     </>
   );
