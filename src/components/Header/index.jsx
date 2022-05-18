@@ -21,6 +21,9 @@ import {
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
+import { useDispatch } from "react-redux";
 
 
 export default function Header() {
@@ -32,21 +35,32 @@ export default function Header() {
   const { username }  = useSelector(state => state.signIn.user || '')
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
 
+  const handleSearch = () => {
+    dispatch(searchMoviesThunk(inputValue))
+  }
+  
+  
   return (
     <>
       <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Heading fontSize={"3xl"} color={"#E50914"}>
+            <Heading fontSize={"3xl"} color={"#E50914"} onClick={() => {
+              setTimeout(() => {
+                window.location.reload("/");
+              },200)
+            }} cursor="pointer">
               Easy.Movie
             </Heading>
           </Box>
           <VStack>
             <InputGroup>
-              <Input />
+              <Input onChange={(e) => setInputValue(e.target.value)}/>
               <InputLeftElement>
-                <SearchIcon />
+                <SearchIcon cursor="pointer" onClick={handleSearch}/>
               </InputLeftElement>
             </InputGroup>
           </VStack>
