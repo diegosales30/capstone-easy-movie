@@ -276,12 +276,11 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      {/* ESSA LÓGICA ABAIXO, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
-                      Categoria: {info.category.length === 1 ? info.category : 
-                      info.category.map((element, index) => {
-                        return index === info.category.length - 1 ? element : element + ', '
+                      Categoria: {info.category?.map((element, index) => {
+                        return index === info.category.length - 1 ? element : (element + ', ')
                       } )} 
                     </Box>
+                    {/* ESSA LÓGICA ACIMA, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
                     <Box
                       as="h5"
                       fontSize="13px"
@@ -343,7 +342,7 @@ const CardMovie = () => {
                     >
                       Plataformas de Streaming: {info.plataform_stream}
                     </Box>
-                  {info.movie_session.status && 
+                  {info.movie_session?.status && 
                     <Button
                     bg={'#E50914'}
                     color="white"
