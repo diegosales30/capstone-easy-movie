@@ -1,6 +1,7 @@
-import { ToastContainer } from "react-toastify";
-import Rotas from "./routes";
+
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Router from "./routes";
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
         draggable
         pauseOnHover
       />
-      <Rotas />
+      <Router />
     </>
   );
 };
