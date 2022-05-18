@@ -57,10 +57,12 @@ const CardMovie = () => {
     const dispatch = useDispatch()
 
     const moviesData = useSelector((state) => state.movies)
+    console.log(moviesData)
 
     useEffect(() => {
         dispatch(listMoviesThunk(page)) 
     },[page])
+
      
       
 return (
