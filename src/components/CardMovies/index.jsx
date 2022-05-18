@@ -365,37 +365,28 @@ const CardMovie = () => {
         </Box>
       </Flex>
       <Box marginTop="10px" display="flex" justifyContent="center">
-        {page <= 1 ?
+        {page !== 1 &&
           <Button
             fontFamily="sans-serif"
             bg={'#E50914'}
             color="white"
             marginLeft="10px"
-            onClick={() => setPage((page += 1))}
+            onClick={() => setPage((page - 1))}
           >
-            Proxima Pagina
+            Página anteriror
           </Button>
-        :
-        <>
-          <Button
-            fontFamily="sans-serif"
-            bg={'#E50914'}
-            color="white"
-            onClick={() => setPage((page -= 1))}
-          >
-            Pagina Anterior
-          </Button>
+        }
+          {moviesData.length === 8 &&
           <Button
           fontFamily="sans-serif"
           bg={'#E50914'}
           color="white"
           marginLeft="10px"
-          onClick={() => setPage((page += 1))}
+          onClick={() => setPage((page + 1))}
           >
-          Proxima Pagina
+          Próxima página
           </Button>
-        </>
-        }
+          }
       </Box>
     </>
   );
