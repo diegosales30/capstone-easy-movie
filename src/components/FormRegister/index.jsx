@@ -8,6 +8,7 @@ import {
   IconButton,
   InputGroup,
   VStack,
+  Heading,
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -21,15 +22,21 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const formSchema = yup.object().shape({
-    username: yup.string().required("Nome é obrigatório!"),
+    username: yup
+      .string()
+      .required("Nome é obrigatório!")
+      .min(2, "Mínimo 2 caracteres!"),
     email: yup
       .string()
       .email("E-mail Inválido!")
       .required("E-mail é obrigatório!"),
     password: yup
       .string()
-      .min(8, "Mínimo de 6 caracteres")
-      .required("Senha é obrigatório!"),
+      .required("Senha é obrigatório!")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
+        "Deve conter, letra Maiúscula, caractere especial e no Mínimo 8 digitos"
+      ),
     confirmPassword: yup
       .string()
       .required("Senha é obrigatório!")
