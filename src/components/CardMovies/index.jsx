@@ -276,7 +276,11 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Categoria: {info.category}
+                      {/* ESSA LÓGICA ABAIXO, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
+                      Categoria: {info.category.length === 1 ? info.category : 
+                      info.category.map((element, index) => {
+                        return index === info.category.length - 1 ? element : element + ', '
+                      } )} 
                     </Box>
                     <Box
                       as="h5"
