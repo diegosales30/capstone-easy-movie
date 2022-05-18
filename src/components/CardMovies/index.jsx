@@ -139,6 +139,7 @@ const CardMovie = () => {
                         bg={'#E50914'}
                         color="white"
                         size="xs"
+                        colorScheme={"red"}
                         alignSelf={"center"}
                         onClick={() => {
                           onOpen();
@@ -162,7 +163,7 @@ const CardMovie = () => {
             bg="#F5F4F3"
             _dark={{ bg: "#6666" }}
             maxW="sm"
-            width="260px"
+            width="200px"
             height="335px"
             borderWidth="1px"
             rounded="lg"
@@ -200,7 +201,7 @@ const CardMovie = () => {
                       fontWeight='semibold'
                       textAlign={'left'}
                       fontFamily='Helvetica, sans-serif'
-                      noOfLines={1}
+                      noOfLines={2}
                     >
                       {movie.name}
                     </Text>
@@ -218,6 +219,7 @@ const CardMovie = () => {
                         color="white"
                         size="xs"
                         alignSelf={"center"}
+                        colorScheme={"red"}
                         onClick={() => {
                           onOpen();
                           setInfo(movie);
@@ -348,6 +350,7 @@ const CardMovie = () => {
                     color="white"
                     width="200px"
                     mt="10px"
+                    colorScheme={'red'}
                     onClick={() => {
                       if (token === null) {
                         toast.error("Para comprar ingresso tem que logar");
@@ -371,6 +374,7 @@ const CardMovie = () => {
             bg={'#E50914'}
             color="white"
             marginLeft="10px"
+            colorScheme={'red'}
             onClick={() => setPage((page - 1))}
           >
             Página anteriror
@@ -382,6 +386,7 @@ const CardMovie = () => {
           bg={'#E50914'}
           color="white"
           marginLeft="10px"
+          colorScheme={'red'}
           onClick={() => setPage((page + 1))}
           >
           Próxima página
