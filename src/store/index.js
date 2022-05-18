@@ -2,8 +2,9 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import thunk from "redux-thunk";
 import userReducer from "./modules/user/reducer";
 import moviesReducer from "./modules/movies/reducer";
+import searchMoviesReducer from "./modules/searchMovie/reducer";
 
-const reducers = combineReducers({ signIn: userReducer ,  movies: moviesReducer})
+const reducers = combineReducers({ signIn: userReducer ,  movies: moviesReducer,  moviesSearch: searchMoviesReducer})
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
