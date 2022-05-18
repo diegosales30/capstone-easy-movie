@@ -122,7 +122,7 @@ const CardMovie = () => {
                       fontWeight='semibold'
                       textAlign={'left'}
                       fontFamily='Helvetica, sans-serif'
-                      noOfLines={1}
+                      noOfLines={2}
                     >
                       {movie.name}
                     </Text>
