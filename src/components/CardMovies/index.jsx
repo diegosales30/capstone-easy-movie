@@ -78,6 +78,7 @@ const CardMovie = () => {
         justifyContent="center"
         flexDirection="row"
         flexWrap="wrap"
+        padding="40px 10%"
       >
         {searchMovies.length === 0 ? (
           <>
@@ -86,7 +87,7 @@ const CardMovie = () => {
                 bg="#F5F4F3"
                 _dark={{ bg: "#6666" }}
                 maxW="sm"
-                width="260px"
+                width="200px"
                 height="335px"
                 borderWidth="1px"
                 rounded="lg"
@@ -120,7 +121,7 @@ const CardMovie = () => {
                           fontWeight="semibold"
                           textAlign={"left"}
                           fontFamily="Helvetica, sans-serif"
-                          noOfLines={1}
+                          noOfLines={2}
                         >
                           {movie.name}
                         </Text>
@@ -137,6 +138,7 @@ const CardMovie = () => {
                             bg={"#E50914"}
                             color="white"
                             size="xs"
+                            colorScheme={"red"}
                             alignSelf={"center"}
                             onClick={() => {
                               onOpen();
@@ -160,7 +162,7 @@ const CardMovie = () => {
                 bg="#F5F4F3"
                 _dark={{ bg: "#6666" }}
                 maxW="sm"
-                width="260px"
+                width="200px"
                 height="335px"
                 borderWidth="1px"
                 rounded="lg"
@@ -194,7 +196,7 @@ const CardMovie = () => {
                           fontWeight="semibold"
                           textAlign={"left"}
                           fontFamily="Helvetica, sans-serif"
-                          noOfLines={1}
+                          noOfLines={2}
                         >
                           {movie.name}
                         </Text>
@@ -212,6 +214,7 @@ const CardMovie = () => {
                             color="white"
                             size="xs"
                             alignSelf={"center"}
+                            colorScheme={"red"}
                             onClick={() => {
                               onOpen();
                               setInfo(movie);
@@ -233,7 +236,7 @@ const CardMovie = () => {
           <Modal isOpen={isOpen} onClose={onClose} size="xl">
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader textAlign="center" fontSize="15px">
+              <ModalHeader textAlign="center" fontSize="26px">
                 {info.name}
               </ModalHeader>
               <ModalCloseButton />
@@ -270,8 +273,14 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Categoria: {info.category}
+                      Categoria:{" "}
+                      {info.category?.map((element, index) => {
+                        return index === info.category.length - 1
+                          ? element
+                          : element + ", ";
+                      })}
                     </Box>
+                    {/* ESSA LÓGICA ACIMA, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
                     <Box
                       as="h5"
                       fontSize="13px"
@@ -286,7 +295,10 @@ const CardMovie = () => {
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
-                      Classificação Indicativa: {info.age_rating} Anos
+                      Classificação Indicativa:{" "}
+                      {info.age_rating === 0
+                        ? "Livre"
+                        : info.age_rating + " anos"}
                     </Box>
                     <Box
                       as="h5"
@@ -333,23 +345,25 @@ const CardMovie = () => {
                     >
                       Plataformas de Streaming: {info.plataform_stream}
                     </Box>
-
-                    <Button
-                      bg={"#E50914"}
-                      color="white"
-                      width="200px"
-                      mt="10px"
-                      onClick={() => {
-                        if (token === null) {
-                          toast.error("Para comprar ingresso tem que logar");
-                        } else {
-                          localStorage.setItem("@idMovie", info.id);
-                          navigate("/buy");
-                        }
-                      }}
-                    >
-                      Comprar Ingresso
-                    </Button>
+                    {info.movie_session?.status && (
+                      <Button
+                        bg={"#E50914"}
+                        color="white"
+                        width="200px"
+                        mt="10px"
+                        colorScheme={"red"}
+                        onClick={() => {
+                          if (token === null) {
+                            toast.error("Para comprar ingresso tem que logar");
+                          } else {
+                            localStorage.setItem("@idMovie", info.id);
+                            navigate("/buy");
+                          }
+                        }}
+                      >
+                        Comprar Ingresso
+                      </Button>
+                    )}
                   </Box>
                 </Flex>
               </ModalBody>
@@ -358,36 +372,29 @@ const CardMovie = () => {
         </Box>
       </Flex>
       <Box marginTop="10px" display="flex" justifyContent="center">
-        {page <= 1 ? (
+        {page !== 1 && (
           <Button
             fontFamily="sans-serif"
             bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            onClick={() => setPage((page += 1))}
+            colorScheme={"red"}
+            onClick={() => setPage(page - 1)}
           >
-            Proxima Pagina
+            Página anteriror
           </Button>
-        ) : (
-          <>
-            <Button
-              fontFamily="sans-serif"
-              bg={"#E50914"}
-              color="white"
-              onClick={() => setPage((page -= 1))}
-            >
-              Pagina Anterior
-            </Button>
-            <Button
-              fontFamily="sans-serif"
-              bg={"#E50914"}
-              color="white"
-              marginLeft="10px"
-              onClick={() => setPage((page += 1))}
-            >
-              Proxima Pagina
-            </Button>
-          </>
+        )}
+        {moviesData.length === 8 && (
+          <Button
+            fontFamily="sans-serif"
+            bg={"#E50914"}
+            color="white"
+            marginLeft="10px"
+            colorScheme={"red"}
+            onClick={() => setPage(page + 1)}
+          >
+            Próxima página
+          </Button>
         )}
       </Box>
     </>
