@@ -74,6 +74,7 @@ const CardMovie = () => {
         justifyContent="center"
         flexDirection="row"
         flexWrap="wrap"
+        padding="40px 10%"
       >
     
       {searchMovies.length === 0 ?
@@ -83,7 +84,7 @@ const CardMovie = () => {
             bg="#F5F4F3"
             _dark={{ bg: "#6666" }}
             maxW="sm"
-            width="260px"
+            width="200px"
             height="335px"
             borderWidth="1px"
             rounded="lg"
