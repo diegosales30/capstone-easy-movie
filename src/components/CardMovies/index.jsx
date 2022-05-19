@@ -13,6 +13,7 @@ import {
   Link,
   ModalBody,
   ModalCloseButton,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { useDisclosure } from "@chakra-ui/react";
@@ -61,6 +62,7 @@ const CardMovie = () => {
   const searchMovies = useSelector((state) => state.moviesSearch);
   const [movie, setMovie] = useState([0]);
 
+  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -138,7 +140,7 @@ const CardMovie = () => {
                             bg={"#E50914"}
                             color="white"
                             size="xs"
-                            colorScheme={"red"}
+                            _hover={{ background: backgroundButton}}
                             alignSelf={"center"}
                             onClick={() => {
                               onOpen();
@@ -214,7 +216,7 @@ const CardMovie = () => {
                             color="white"
                             size="xs"
                             alignSelf={"center"}
-                            colorScheme={"red"}
+                            _hover={{ background: backgroundButton}}
                             onClick={() => {
                               onOpen();
                               setInfo(movie);
@@ -351,7 +353,7 @@ const CardMovie = () => {
                         color="white"
                         width="200px"
                         mt="10px"
-                        colorScheme={"red"}
+                        _hover={{ background: backgroundButton}}
                         onClick={() => {
                           if (token === null) {
                             toast.error("Para comprar ingresso tem que logar");
@@ -378,7 +380,7 @@ const CardMovie = () => {
             bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            colorScheme={"red"}
+            _hover={{ background: backgroundButton}}
             onClick={() => setPage(page - 1)}
           >
             Página anteriror
@@ -390,7 +392,7 @@ const CardMovie = () => {
             bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            colorScheme={"red"}
+            _hover={{ background: backgroundButton}}
             onClick={() => setPage(page + 1)}
           >
             Próxima página

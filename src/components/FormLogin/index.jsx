@@ -8,12 +8,14 @@ import {
   IconButton,
   VStack,
   InputGroup,
-} from "@chakra-ui/react";
-import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
-import { useState } from "react";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+  useColorModeValue,
+  
+} from '@chakra-ui/react';
+import { LockIcon, UnlockIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from "react-redux";
 import { signInThunk } from "../../store/modules/user/thunk";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +54,8 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     return dispatch(signInThunk(data, navigate));
   };
-
+  //AQUI NO LOGIN SÃO IGUAIS, POIS NÃO TEM OPÇÃO DE MUDAR O TEMA
+  const backgroundButton = useColorModeValue('gray.700', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <VStack spacing={5} as={"form"}>
       <FormControl isInvalid={invalidEmail}>
@@ -100,6 +103,7 @@ const LoginForm = () => {
         bg="#E50914"
         color="white"
         variant="unstyled"
+        _hover={{ background: backgroundButton}}
       >
         Login
       </Button>

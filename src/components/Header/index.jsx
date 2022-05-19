@@ -41,7 +41,7 @@ export default function Header() {
   const handleSearch = () => {
     dispatch(searchMoviesThunk(inputValue));
   };
-
+  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <>
       <Box
@@ -81,6 +81,7 @@ export default function Header() {
                   bg={"#E50914"}
                   color="white"
                   colorScheme={colorMode === "light" ? "red" : "light"}
+                  _hover={{ background: backgroundButton}}
                   onClick={() => {
                     localStorage.clear();
                     navigate("/login");
