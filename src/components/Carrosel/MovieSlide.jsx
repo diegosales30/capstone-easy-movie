@@ -14,50 +14,49 @@ import { useEffect } from "react";
 const MovieSlide = () => {
   const dispatch = useDispatch();
 
-  const movies = useSelector((state) => state.moviesCarrosel);
-
   useEffect(() => {
     dispatch(listMoviesThunkCarrosel());
   }, []);
+  const movies = useSelector((state) => state.moviesCarrosel);
 
-  const cartaz = movies.filter((movie) => movie.movie_session.status);
-  console.log(cartaz);
+  const filtrado = movies.filter((item) => item.poster !== "");
+
   return (
     <>
       <VStack w="100%" h="49.2vh" maxW={1280} margin={"auto"}>
         <Heading as="h3" size="lg">
           Filmes em cartaz
         </Heading>
-
-        <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          loop={6}
-          coverflowEffect={
-            [
-              // rotate: 50,
-              // stretch: 0,
-              // depth: 100,
-              // modifier: 1,
-              // slideShadows: true,
-            ]
-          }
-          autoplay={2500}
-          pagination={true}
-          slidesPerView={"auto"}
-          modules={[EffectCoverflow, Pagination]}
-          className="product-images-slider-thumbs"
-        >
-        
-           {cartaz.map((movie) => (
-            <SwiperSlide key={movie.id}>
-              <div className="product-images-slider-thumbs-wrapper">
-                <img src={movie.poster} alt="movie imagem"/>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {filtrado.length > 0 && (
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            loop={6}
+            coverflowEffect={
+              [
+                // rotate: 50,
+                // stretch: 0,
+                // depth: 100,
+                // modifier: 1,
+                // slideShadows: true,
+              ]
+            }
+            autoplay={2500}
+            pagination={true}
+            slidesPerView={"auto"}
+            modules={[EffectCoverflow, Pagination]}
+            className="product-images-slider-thumbs"
+          >
+            {filtrado.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className="product-images-slider-thumbs-wrapper">
+                  <img src={item.poster} alt="movie imagem" />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </VStack>
     </>
   );

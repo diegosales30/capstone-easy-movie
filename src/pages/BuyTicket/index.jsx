@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
-const BuyTicket = ({ movie }) => {
+const BuyTicket = () => {
   const rooms1 = [
     {
       name: "Sala 1",
@@ -59,18 +59,19 @@ const BuyTicket = ({ movie }) => {
     },
   ];
 
-  const [selectedMovie, setSelectedMovie] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState([]); // FILME SELECIONADO
 
-  const [selectedCity, setSelectedCity] = useState([]);
+  const [selectedCity, setSelectedCity] = useState([]); // CIDADE SELECIONADA
   const navigate = useNavigate()
   const {cinemas} = selectedCity
 
-  const [selectedCinema, setSelectedCinema] = useState([]);
+  const [isSelected, setIsSelected] = useState(false); // BOLEANO PARA ABRIR OPÇÕES DE COMPRA
+  
+  const [selectedCinema, setSelectedCinema] = useState([]); // CINEMA SELECIONADO
 
-  const [isSelected, setIsSelected] = useState(false);
-
-  const [rooms, setRooms] = useState([])
-  const [info , setInfo] = useState([])
+  const [rooms, setRooms] = useState([]) //PEGANDO A CIDADE NA API
+  const [info , setInfo] = useState([]) // INFORMAÇÕES DA COMPRA
+  const [toRender, setToRender] = useState(false) // ABRIR BOTÃO DE COMPRA
 
   const id = localStorage.getItem("@idMovie");
 
@@ -92,7 +93,6 @@ const BuyTicket = ({ movie }) => {
     .then((response)=> setRooms(response.data))
   }
 
-  const [toRender, setToRender] = useState(false)
 
   // const renderPrice = (e) =>{
 
@@ -107,8 +107,9 @@ const BuyTicket = ({ movie }) => {
     setInfo(info)
     setToRender(true)
   }
-
-  const RenderInfo = ({info}) => {
+  
+  const RenderInfo = () => {
+    console.log(selectedMovie)
     return(
       <VStack
         justify={'space-around'}
@@ -150,7 +151,7 @@ const BuyTicket = ({ movie }) => {
 
   //   setIsSelected(false);
   // };
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX PAGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   const handleCinema = (event) => {
     setSelectedCinema(JSON.parse(event.target.value));
     setIsSelected(true);
