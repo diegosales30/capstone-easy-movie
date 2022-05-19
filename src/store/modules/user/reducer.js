@@ -5,10 +5,9 @@ const token = localStorage.getItem("@token") || "";
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_SIGN_IN:
-
-      const { user } = action
-      console.log(action)
-      return  state = user   ;
+      const { user } = action;
+      console.log(action);
+      return (state = user);
 
     default:
       return state;
