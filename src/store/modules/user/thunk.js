@@ -13,6 +13,8 @@ export const signInThunk = (userData, navigate) => (dispatch) => {
       console.log(response.data);
       const { accessToken } = response.data; //PEGA O TOKEN
       localStorage.setItem("@token", accessToken); //GUARDA O TOKEN NA LOCALSTORAGE
+      const { user } = response.data;
+      localStorage.setItem("@user", user.username);
       toast.success("Login realizado com sucesso!");
       setTimeout(() => {
         navigate("/");

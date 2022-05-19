@@ -7,7 +7,7 @@ const userReducer = (state = {}, action) => {
     case USER_SIGN_IN:
       const { user } = action;
       console.log(action);
-      return (state = user);
+      return user;
 
     default:
       return state;

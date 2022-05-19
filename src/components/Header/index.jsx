@@ -29,10 +29,14 @@ import logo from "../../assets/logo0.png";
 
 export default function Header() {
   const token = JSON.stringify(localStorage.getItem("@token"));
+  const username = localStorage.getItem("@user");
 
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const { username } = useSelector((state) => state.signIn.user || "");
+  // const { username } = useSelector((state) => {
+  //   console.log(state)
+  //   return state.signIn.user || ""});
+    
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -98,22 +102,37 @@ export default function Header() {
                       src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </MenuButton>
-                  <MenuList alignItems={"center"}>
-                    <br />
-                    <Center>
+                  <MenuList alignItems={"center"} >
+                    {/* <br /> */}
+                    <Center
+                    // sx={{"@media(max-width: 768px)":{
+                    //   display: "none"
+                    //   }}}
+                      >
                       <Avatar
                         size={"2xl"}
                         src={
                           "https://avatars.dicebear.com/api/male/username.svg"
                         }
+                        // sx={{"@media(max-width: 768px)":{
+                        //   visibility: "none"
+                        //   }}}
                       />
                     </Center>
                     <br />
-                    <Center>
+                    <Center
+                    // sx={{"@media(max-width: 768px)":{
+                    //   display: "none"
+                    //   }}}
+                      >
                       <p>{username}</p>
                     </Center>
                     <br />
-                    <MenuDivider />
+                    <MenuDivider 
+                        // sx={{"@media(max-width: 768px)":{
+                        // display: "none"
+                        // }}}
+                        />
                     <MenuItem>Seus Ingressos</MenuItem>
                     <MenuItem
                       onClick={() => {
