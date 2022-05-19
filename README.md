@@ -22,6 +22,7 @@ yarn add react-icons
 yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6 @chakra-ui/icons
 yarn add react-responsive-carousel
 yarn add react-toastify
+yarn add swiper
 yarn add react-router-dom
 yarn add yup react-hook-form @hookform/resolvers
 yarn add redux react-redux redux-thunk
