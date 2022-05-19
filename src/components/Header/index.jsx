@@ -41,21 +41,16 @@ export default function Header() {
   const handleSearch = () => {
     dispatch(searchMoviesThunk(inputValue));
   };
-  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
+  const backgroundButton = useColorModeValue("gray.500", "gray.700"); //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <>
-      <Box
-        position={"fixed"}
-        zIndex="999"
-        h="8.5vh"
-        top={0}
-        left={0}
-        right={0}
-        w={"100%"}
-        bg={useColorModeValue("gray.100", "gray.900")}
-        px={4}
-      >
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+      <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          flexDirection={{ base: "column", md: "row", lg: "row" }}
+          margin="10px"
+        >
           <Box>
             <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
               <Image src={logo} w={300} />
@@ -69,7 +64,7 @@ export default function Header() {
               </InputLeftElement>
             </InputGroup>
           </VStack>
-          <Flex alignItems={"center"}>
+          <Flex alignItems={"center"} marginTop={"10px"}>
             <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -81,7 +76,7 @@ export default function Header() {
                   bg={"#E50914"}
                   color="white"
                   colorScheme={colorMode === "light" ? "red" : "light"}
-                  _hover={{ background: backgroundButton}}
+                  _hover={{ background: backgroundButton }}
                   onClick={() => {
                     localStorage.clear();
                     navigate("/login");

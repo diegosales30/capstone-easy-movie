@@ -62,7 +62,7 @@ const CardMovie = () => {
   const searchMovies = useSelector((state) => state.moviesSearch);
   const [movie, setMovie] = useState([0]);
 
-  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
+  const backgroundButton = useColorModeValue("gray.500", "gray.700"); //AQUI MUDA O BACKGROUND DOS BOTÕES
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const CardMovie = () => {
                             bg={"#E50914"}
                             color="white"
                             size="xs"
-                            _hover={{ background: backgroundButton}}
+                            _hover={{ background: backgroundButton }}
                             alignSelf={"center"}
                             onClick={() => {
                               onOpen();
@@ -216,7 +216,7 @@ const CardMovie = () => {
                             color="white"
                             size="xs"
                             alignSelf={"center"}
-                            _hover={{ background: backgroundButton}}
+                            _hover={{ background: backgroundButton }}
                             onClick={() => {
                               onOpen();
                               setInfo(movie);
@@ -235,10 +235,10 @@ const CardMovie = () => {
         )}
 
         <Box>
-          <Modal isOpen={isOpen} onClose={onClose} size="xl">
+          <Modal isOpen={isOpen} onClose={onClose} size="4xl">
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader textAlign="center" fontSize="26px">
+              <ModalHeader textAlign="center" fontSize="25px">
                 {info.name}
               </ModalHeader>
               <ModalCloseButton />
@@ -263,7 +263,7 @@ const CardMovie = () => {
                     height="250px"
                   />
                   <Box
-                    margin="10px"
+                    margin="7px"
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
@@ -271,7 +271,7 @@ const CardMovie = () => {
                   >
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -285,7 +285,7 @@ const CardMovie = () => {
                     {/* ESSA LÓGICA ACIMA, É PARA QUE CASO TENHA MAIS DE UMA CATEGORIA, SEJA SEPARADA COM VÍRGULA DE FORMA CORRETA*/}
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -293,7 +293,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -304,7 +304,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
@@ -312,7 +312,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
@@ -321,7 +321,7 @@ const CardMovie = () => {
 
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="15px"
                       marginTop="15px"
@@ -341,7 +341,7 @@ const CardMovie = () => {
 
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
@@ -353,7 +353,7 @@ const CardMovie = () => {
                         color="white"
                         width="200px"
                         mt="10px"
-                        _hover={{ background: backgroundButton}}
+                        _hover={{ background: backgroundButton }}
                         onClick={() => {
                           if (token === null) {
                             toast.error("Para comprar ingresso tem que logar");
@@ -380,7 +380,7 @@ const CardMovie = () => {
             bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            _hover={{ background: backgroundButton}}
+            _hover={{ background: backgroundButton }}
             onClick={() => setPage(page - 1)}
           >
             Página anteriror
@@ -392,7 +392,7 @@ const CardMovie = () => {
             bg={"#E50914"}
             color="white"
             marginLeft="10px"
-            _hover={{ background: backgroundButton}}
+            _hover={{ background: backgroundButton }}
             onClick={() => setPage(page + 1)}
           >
             Próxima página
