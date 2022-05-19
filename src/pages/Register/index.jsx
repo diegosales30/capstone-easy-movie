@@ -10,15 +10,13 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FaCopyright } from "react-icons/fa";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "../../components/FormRegister";
 import logo from "../../assets/logo0.png";
 
 const Register = () => {
   const navigate = useNavigate();
-
-  // const { colorMode, toggleColorMode } = useColorMode();
 
   const toLogin = () => {
     navigate("/login");
@@ -35,24 +33,34 @@ const Register = () => {
         minH="80px"
         align={"center"}
         justify={"space-between"}
-        sx={{"@media(max-width: 768px)":{
-          justifyContent:'center'
-  }}}
+        sx={{
+          "@media(max-width: 768px)": {
+            justifyContent: "center",
+          },
+        }}
       >
         <Heading justify={"center"} color={"#E50914"}>
           <Image src={logo} w={"300px"} />
         </Heading>
-        {/* <HStack>
-          <Button onClick={toggleColorMode}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </Button>
-        </HStack> */}
       </HStack>
-      <Center h="90vh" maxH={"862px"}  maxW="500px" minW="320px" w="80vw">
-        <VStack spacing={5} p={0} bg={"rgba(0,0,0,.75)"} w="100%" h="70vh" padding="30px 0px"  maxH={"660px"}>
-          <Heading fontSize={"4xl"} justify={"center"} color={"#E50914"} lineHeight={1.2}>
+      <Center h="90vh" maxH={"862px"} maxW="500px" minW="320px" w="80vw">
+        <VStack
+          spacing={5}
+          p={0}
+          bg={"rgba(0,0,0,.75)"}
+          w="100%"
+          h="70vh"
+          padding="30px 0px"
+          maxH={"660px"}
+        >
+          <Heading
+            fontSize={"4xl"}
+            justify={"center"}
+            color={"#E50914"}
+            lineHeight={1.2}
+          >
             Registrar
-            </Heading>
+          </Heading>
           <RegisterForm />
           <HStack align={"center"}>
             <Text color={"white"}>Já possui cadastro? Clique aqui: </Text>

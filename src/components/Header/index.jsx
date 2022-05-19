@@ -33,11 +33,6 @@ export default function Header() {
 
   const { colorMode, toggleColorMode } = useColorMode();
 
-  // const { username } = useSelector((state) => {
-  //   console.log(state)
-  //   return state.signIn.user || ""});
-    
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -45,7 +40,7 @@ export default function Header() {
   const handleSearch = () => {
     dispatch(searchMoviesThunk(inputValue));
   };
-  const backgroundButton = useColorModeValue("gray.500", "gray.700"); //AQUI MUDA O BACKGROUND DOS BOTÕES
+  const backgroundButton = useColorModeValue("gray.500", "gray.700");
   return (
     <>
       <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -102,37 +97,24 @@ export default function Header() {
                       src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
                   </MenuButton>
-                  <MenuList alignItems={"center"} >
-                    {/* <br /> */}
-                    <Center
-                    // sx={{"@media(max-width: 768px)":{
-                    //   display: "none"
-                    //   }}}
-                      >
+                  <MenuList
+                    alignItems={"center"}
+                    style={{ position: "absolute", left: "-180px", zIndex: 1 }}
+                  >
+                    <Center>
                       <Avatar
                         size={"2xl"}
                         src={
                           "https://avatars.dicebear.com/api/male/username.svg"
                         }
-                        // sx={{"@media(max-width: 768px)":{
-                        //   visibility: "none"
-                        //   }}}
                       />
                     </Center>
                     <br />
-                    <Center
-                    // sx={{"@media(max-width: 768px)":{
-                    //   display: "none"
-                    //   }}}
-                      >
+                    <Center>
                       <p>{username}</p>
                     </Center>
                     <br />
-                    <MenuDivider 
-                        // sx={{"@media(max-width: 768px)":{
-                        // display: "none"
-                        // }}}
-                        />
+                    <MenuDivider />
                     <MenuItem>Seus Ingressos</MenuItem>
                     <MenuItem
                       onClick={() => {
@@ -140,9 +122,7 @@ export default function Header() {
 
                         setTimeout(() => {
                           window.location.reload("/");
-                          //refatorar para não recarregar a pagina
                         }, 200);
-                        //navigate("/");
                       }}
                     >
                       Sair
