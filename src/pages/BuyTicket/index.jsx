@@ -1,58 +1,70 @@
-import { Box, Text, Select, Image } from "@chakra-ui/react";
+import { Box, Text, Select, Image, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BuyTicket = ({ movie }) => {
-  const rooms = [
+  const rooms1 = [
     {
       name: "Sala 1",
       time: "14:00",
       version: "Dublado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 28,00',
+      meia: 'R$ 18,00',
     },
     {
       name: "Sala 2",
       time: "17:30",
       version: "Dublado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 28,00',
+      meia: 'R$ 8,00',
     },
     {
       name: "Sala 3",
       time: "15:00",
       version: "Legendado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 38,00',
+      meia: 'R$ 16,00',
     },
     {
       name: "Sala 4",
       time: "21:00",
       version: "Dublado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 18,00',
+      meia: 'R$ 18,00',
     },
     {
       name: "Sala 5",
       time: "18:00",
       version: "Legendado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 56,00',
+      meia: 'R$ 18,00',
     },
     {
       name: "Sala 3D",
       time: "14:40",
       version: "Dublado",
-      inteira: 40,
-      meia: 20,
+      inteira: 'R$ 40,00',
+      meia: 'R$ 25,60',
     },
   ];
 
   const [selectedMovie, setSelectedMovie] = useState([]);
+
   const [selectedCity, setSelectedCity] = useState([]);
+  const navigate = useNavigate()
+  const {cinemas} = selectedCity
+
   const [selectedCinema, setSelectedCinema] = useState([]);
+
   const [isSelected, setIsSelected] = useState(false);
+
+  const [rooms, setRooms] = useState([])
+  const [info , setInfo] = useState([])
+
   const id = localStorage.getItem("@idMovie");
+
+
   const getMovie = () => {
     axios
       .get(`https://easy-movie.herokuapp.com/movies?id=${id}`)
@@ -63,29 +75,62 @@ const BuyTicket = ({ movie }) => {
         console.log(err);
       });
   };
+  const getCity = ( ) =>{
+    axios
+    .get('https://easy-movie.herokuapp.com/city')
+    .then((response)=> setRooms(response.data))
+  }
+  const [toRender, setToRender] = useState(false)
+
+  // const renderPrice = (e) =>{
+
+  //   const cityTarget = rooms.find((city)=>city.name === selectedCity.name )
+    
+  //   //const cineTarget = cityTarget.cine.find((cine)=> JSON.parse(e.target.value)=== cine.name)
+  //   //const roomsTarget = cineTarget.rooms.filter((room, i)=>console.log(room.name , selectedCity.cinemas[0].rooms[i])) 
+
+  // }
+  const renderInfo = (info) =>{
+    setInfo(info)
+    setToRender(true)
+  }
+  const RenderInfo = ({info}) =>{
+    return(
+    <Box>
+      <Text>{info.name}</Text>
+      <Text>{info.time}</Text>
+      <Text>{info.version}</Text>
+      <Text>Valor total: {info.inteira}</Text>
+      <Button onClick={()=>navigate('/')}>Pagar</Button>
+    </Box>
+
+    )
+  }
 
   useEffect(() => {
+
     getMovie();
+    getCity()
   }, []);
 
-  const handleCity = (event) => {
-    setSelectedCity(JSON.parse(event.target.value));
-    console.log(selectedCity);
-    setIsSelected(false);
-  };
+  // const handleCity = (event) => {
+
+  //   setSelectedCity(JSON.parse(event.target.value));
+
+  //   setIsSelected(false);
+  // };
 
   const handleCinema = (event) => {
+ 
     setSelectedCinema(JSON.parse(event.target.value));
     setIsSelected(true);
-    console.log(selectedCinema);
+
   };
 
   return (
     <>
       {selectedMovie.map(
         (movie) => (
-          console.log(movie),
-          (
             <Box
               key={movie.id}
               m="auto"
@@ -104,10 +149,17 @@ const BuyTicket = ({ movie }) => {
                   w="200px"
                   mb="10px"
                   placeholder="Escolha a cidade"
-                  onChange={handleCity}
+
+                  onClick={(e)=>setSelectedCity(JSON.parse(e.target.value))}
+               
                 >
-                  {movie.movie_session.city.map((city) => (
-                    <option w="200px" value={JSON.stringify(city.cinemas)}>
+                  {movie.movie_session.city.map((city, index) => (
+
+                    <option 
+  
+                      key={index}
+                      w="200px" 
+                      value={JSON.stringify(city)}>
                       {city.name}
                     </option>
                   ))}
@@ -115,10 +167,17 @@ const BuyTicket = ({ movie }) => {
                 <Select
                   w="200px"
                   placeholder="Escolha o Cinema"
-                  onChange={handleCinema}
+                  onClick={
+                    (e)=>{
+
+                      handleCinema(e)
+                    }}
                 >
-                  {selectedCity.map((cinema) => (
-                    <option w="200px" value={JSON.stringify(cinema.rooms)}>
+                  {cinemas?.map((cinema,index) => (
+                    <option 
+                      key={index}
+                      w="200px" 
+                      value={JSON.stringify(cinema.name)}>
                       {cinema.name}
                     </option>
                   ))}
@@ -126,8 +185,10 @@ const BuyTicket = ({ movie }) => {
 
                 {isSelected ? (
                   <Box mt="30px">
-                    {rooms.map((room) => (
+                    {rooms1.map((room,index) => (
                       <Box
+                        onClick={ () =>renderInfo(room)}
+                        key={index}
                         display="flex"
                         flex-direction="row"
                         w="30vw"
@@ -142,8 +203,8 @@ const BuyTicket = ({ movie }) => {
                         <Text w="90px" textAlign="center">
                           {room.version}
                         </Text>
-                        <Text>{room.inteira.toFixed(2)}</Text>
-                        <Text>{room.meia.toFixed(2)}</Text>
+                        <Text>{room.inteira}</Text>
+                        <Text>{room.meia}</Text>
                       </Box>
                     ))}
                   </Box>
@@ -152,13 +213,19 @@ const BuyTicket = ({ movie }) => {
                     <Text>Escolha onde quer assistir o filme</Text>
                   </Box>
                 )}
+                {toRender &&
+                 <Box>
+                   <Text>Você escolheu:</Text>
+                   <RenderInfo info={info}/>
+                 </Box>
+                
+                }
               </Box>
               <Box m="20px">
                 <Image src={movie.image} w="30vw" h="80vh" />
               </Box>
             </Box>
           )
-        )
       )}
     </>
   );
