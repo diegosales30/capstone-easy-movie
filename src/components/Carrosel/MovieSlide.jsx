@@ -11,7 +11,7 @@ import { Heading, VStack } from "@chakra-ui/react";
 const MovieSlide = () => {
   return (
     <>
-      <VStack w="100%" h="49.2vh" maxW={1280} minW={350} margin={"auto"}>
+      <VStack w="100%" h="49.2vh" maxW={1280} margin={"auto"}>
         <Heading as="h3" size="lg">
           Filmes em cartaz
         </Heading>
@@ -29,6 +29,7 @@ const MovieSlide = () => {
               // slideShadows: true,
             ]
           }
+          autoplay={2500}
           pagination={true}
           slidesPerView={"auto"}
           modules={[EffectCoverflow, Pagination]}
