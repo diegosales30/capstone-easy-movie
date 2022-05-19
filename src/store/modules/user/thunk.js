@@ -15,11 +15,10 @@ export const signInThunk = (userData, navigate) => (dispatch) => {
       localStorage.setItem("@token", accessToken); //GUARDA O TOKEN NA LOCALSTORAGE
       toast.success("Login realizado com sucesso!");
       setTimeout(() => {
-        navigate('/')
+        navigate("/");
       }, 2000);
-      const newState = {token: accessToken, user: response.data.user }
+      const newState = { token: accessToken, user: response.data.user };
       dispatch(signIn(newState));
-
     })
     .catch((err) => {
       toast.error("Usuário ou senha inválidos!");
