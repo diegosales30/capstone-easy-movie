@@ -49,10 +49,11 @@ const MovieSlide = () => {
           modules={[EffectCoverflow, Pagination]}
           className="product-images-slider-thumbs"
         >
-          {cartaz.map((movie) => (
+        
+           {cartaz.map((movie) => (
             <SwiperSlide key={movie.id}>
               <div className="product-images-slider-thumbs-wrapper">
-                <img src={movie.poster} alt="movie imagem" />
+                <img src={movie.poster} alt="movie imagem"/>
               </div>
             </SwiperSlide>
           ))}
