@@ -9,6 +9,7 @@ import {
   InputGroup,
   VStack,
   Heading,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -59,7 +60,8 @@ const RegisterForm = () => {
   const invalidEmail = () => (errors.email ? true : false);
   const invalidPassword = () => (errors.password ? true : false);
   const invalidConfirmPassword = () => (errors.confirmPassword ? true : false);
-
+  //AQUI NO LOGIN SÃO IGUAIS, POIS NÃO TEM OPÇÃO DE MUDAR O TEMA
+  const backgroundButton = useColorModeValue('gray.700', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   const onSubmit = (data) => {
     axios
       .post("https://easy-movie.herokuapp.com/register", data)
@@ -158,6 +160,7 @@ const RegisterForm = () => {
         bg="#E50914"
         color="white"
         variant="unstyled"
+        _hover={{ background: backgroundButton}}
       >
         Cadastrar
       </Button>

@@ -54,7 +54,8 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     return dispatch(signInThunk(data, navigate));
   };
-  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
+  //AQUI NO LOGIN SÃO IGUAIS, POIS NÃO TEM OPÇÃO DE MUDAR O TEMA
+  const backgroundButton = useColorModeValue('gray.700', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <VStack spacing={5} as={"form"}>
       <FormControl isInvalid={invalidEmail}>
@@ -102,6 +103,7 @@ const LoginForm = () => {
         bg="#E50914"
         color="white"
         variant="unstyled"
+        _hover={{ background: backgroundButton}}
       >
         Login
       </Button>
