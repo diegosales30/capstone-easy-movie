@@ -1,17 +1,14 @@
 import { USER_SIGN_IN } from "./actionTypes";
 
 const token = localStorage.getItem("@token") || "";
-const defaultState = {
-  user: {},
-  token: "",
-};
 
-const userReducer = (state = defaultState, action) => {
+const userReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_SIGN_IN:
-      const { token } = action;
 
-      return { ...state, token };
+      const { user } = action
+      console.log(action)
+      return  state = user   ;
 
     default:
       return state;

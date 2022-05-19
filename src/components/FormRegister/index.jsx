@@ -8,6 +8,7 @@ import {
   IconButton,
   InputGroup,
   VStack,
+  Heading,
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -21,18 +22,24 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const formSchema = yup.object().shape({
-    username: yup.string().required("Nome é obrigatório!"),
+    username: yup
+      .string()
+      .required("Nome é obrigatório!")
+      .min(2, "Mínimo 2 caracteres!"),
     email: yup
       .string()
       .email("E-mail Inválido!")
       .required("E-mail é obrigatório!"),
     password: yup
       .string()
-      .min(8, "Mínimo de 6 caracteres")
-      .required("Senha é obrigatório!"),
+      .required("Senha é obrigatório!")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
+        "Deve conter, letra Maiúscula, caractere especial e no Mínimo 8 digitos"
+      ),
     confirmPassword: yup
       .string()
-      .required("Senha é obrigatório!")
+      .required("Confirmação de senha é obrigatório!")
       .oneOf([yup.ref("password")], "Digite a senha corretamente!"),
   });
 
@@ -70,8 +77,9 @@ const RegisterForm = () => {
   return (
     <VStack>
       <FormControl isInvalid={invalidUsername} isRequired>
-        <FormLabel>Usuário</FormLabel>
+        <FormLabel color={"white"}>Usuário</FormLabel>
         <Input
+          color={"white"}
           variant="outline"
           size={"lg"}
           type="text"
@@ -81,8 +89,9 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidEmail} isRequired>
-        <FormLabel>Email</FormLabel>
+        <FormLabel color={"white"}>Email</FormLabel>
         <Input
+          color={"white"}
           variant="outline"
           size={"lg"}
           type="email"
@@ -92,9 +101,10 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidPassword} isRequired>
-        <FormLabel>Senha</FormLabel>
+        <FormLabel color={"white"}>Senha</FormLabel>
         <InputGroup>
           <Input
+            color={"white"}
             variant="outline"
             size={"lg"}
             type={show ? "text" : "password"}
@@ -103,6 +113,7 @@ const RegisterForm = () => {
           />
           <InputRightElement>
             <IconButton
+              color={"white"}
               variant="unstyled"
               mt="0.5rem"
               size="md"
@@ -115,9 +126,10 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidConfirmPassword} isRequired>
-        <FormLabel>Confirmar Senha</FormLabel>
+        <FormLabel color={"white"}>Confirmar Senha</FormLabel>
         <InputGroup>
           <Input
+            color={"white"}
             variant="outline"
             size={"lg"}
             type={show ? "text" : "password"}
@@ -126,6 +138,7 @@ const RegisterForm = () => {
           />
           <InputRightElement>
             <IconButton
+              color={"white"}
               variant="unstyled"
               mt="0.5rem"
               size="md"

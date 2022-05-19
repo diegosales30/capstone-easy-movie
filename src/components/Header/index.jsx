@@ -17,14 +17,30 @@ import {
   InputGroup,
   InputLeftElement,
   Heading,
+  Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
+import { useDispatch } from "react-redux";
+import logo from "../../assets/logo0.png";
 
 export default function Header() {
   const token = JSON.stringify(localStorage.getItem("@token"));
+
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const { username } = useSelector((state) => state.signIn.user || "");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSearch = () => {
+    dispatch(searchMoviesThunk(inputValue));
+  };
 
   return (
     <>
@@ -41,15 +57,15 @@ export default function Header() {
         >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Heading fontSize={"3xl"} color={"#E50914"}>
-              Easy.Movie
+            <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
+              <Image src={logo} w={300} />
             </Heading>
           </Box>
           <VStack>
             <InputGroup>
-              <Input />
+              <Input onChange={(e) => setInputValue(e.target.value)} />
               <InputLeftElement>
-                <SearchIcon />
+                <SearchIcon cursor="pointer" onClick={handleSearch} />
               </InputLeftElement>
             </InputGroup>
           </VStack>
@@ -62,46 +78,62 @@ export default function Header() {
               {token === "null" ? (
                 <Button
                   variant="solid"
-                  bg={'#E50914'}
+                  bg={"#E50914"}
                   color="white"
-                  onClick={() => { navigate("/login"); }}
+                  colorScheme={colorMode === "light" ? "red" : "light"}
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }}
                 >
                   Logar
                 </Button>
               ) : (
                 <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
+                  <MenuButton
+                    as={Button}
+                    rounded={"full"}
+                    variant={"link"}
+                    cursor={"pointer"}
+                    minW={0}
+                  >
                     <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      size={"sm"}
+                      src={"https://avatars.dicebear.com/api/male/username.svg"}
                     />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Seus Ingressos</MenuItem>
-                  <MenuItem onClick={() => { 
-                    localStorage.clear()
-                    navigate('/')
-                  }}>Sair</MenuItem>
-                </MenuList>
-              </Menu>
+                  </MenuButton>
+                  <MenuList alignItems={"center"}>
+                    <br />
+                    <Center>
+                      <Avatar
+                        size={"2xl"}
+                        src={
+                          "https://avatars.dicebear.com/api/male/username.svg"
+                        }
+                      />
+                    </Center>
+                    <br />
+                    <Center>
+                      <p>{username}</p>
+                    </Center>
+                    <br />
+                    <MenuDivider />
+                    <MenuItem>Seus Ingressos</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.clear();
+
+                        setTimeout(() => {
+                          window.location.reload("/");
+                          //refatorar para não recarregar a pagina
+                        }, 200);
+                        //navigate("/");
+                      }}
+                    >
+                      Sair
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               )}
             </Stack>
           </Flex>

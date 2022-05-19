@@ -1,3 +1,3 @@
 import { USER_SIGN_IN } from "./actionTypes";
 
-export const signIn = (token) => ({type: USER_SIGN_IN, token})
+export const signIn = (user) => ({type: USER_SIGN_IN, user})
