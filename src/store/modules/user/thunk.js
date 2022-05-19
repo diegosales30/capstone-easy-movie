@@ -16,7 +16,7 @@ export const signInThunk = (userData, navigate) => (dispatch) => {
       toast.success("Login realizado com sucesso!");
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
       const newState = { token: accessToken, user: response.data.user };
       dispatch(signIn(newState));
     })
