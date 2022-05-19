@@ -44,7 +44,7 @@ const Login = () => {
           </Button>
         </HStack> */}
       </HStack>
-      <Center h="90vh" minW="25%">
+      <Center h="90vh" minW="25%" w='500px'>
         <VStack spacing={5} p={10} bg={"rgba(0,0,0,.75)"} w="100%" h="75%">
           <Heading fontSize={"4xl"} justify={"center"} color={"#E50914"}>
             Entrar
