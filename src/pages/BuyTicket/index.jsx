@@ -1,7 +1,17 @@
-import { Box, Text, Select, Image, Button } from "@chakra-ui/react";
+import { 
+  Box, 
+  Text, 
+  Select, 
+  Image, 
+  Button,
+  VStack,
+  HStack,
+  Heading
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
 
 const BuyTicket = ({ movie }) => {
   const rooms1 = [
@@ -75,11 +85,13 @@ const BuyTicket = ({ movie }) => {
         console.log(err);
       });
   };
+
   const getCity = ( ) =>{
     axios
     .get('https://easy-movie.herokuapp.com/city')
     .then((response)=> setRooms(response.data))
   }
+
   const [toRender, setToRender] = useState(false)
 
   // const renderPrice = (e) =>{
@@ -90,25 +102,44 @@ const BuyTicket = ({ movie }) => {
   //   //const roomsTarget = cineTarget.rooms.filter((room, i)=>console.log(room.name , selectedCity.cinemas[0].rooms[i])) 
 
   // }
-  const renderInfo = (info) =>{
+
+  const renderInfo = (info) => {
     setInfo(info)
     setToRender(true)
   }
-  const RenderInfo = ({info}) =>{
-    return(
-    <Box>
-      <Text>{info.name}</Text>
-      <Text>{info.time}</Text>
-      <Text>{info.version}</Text>
-      <Text>Valor total: {info.inteira}</Text>
-      <Button onClick={()=>navigate('/')}>Pagar</Button>
-    </Box>
 
+  const RenderInfo = ({info}) => {
+    return(
+      <VStack
+        justify={'space-around'}
+        align='center'
+      >
+        <HStack
+        spacing={5}
+        mb={'1rem'}
+        border={'1px solid black'}
+        px={5}
+        >
+          <Text>{info.name}</Text>
+          <Text>{info.time}</Text>
+          <Text>{info.version}</Text>
+          <Text>Valor total: {info.inteira}</Text>
+        </HStack>
+        <HStack
+          w={'40%'}
+        >
+          <Button 
+            color={'white'} 
+            bg={'#E50914'}
+            width={'100%'}
+            onClick={()=>navigate('/')}
+          >Pagar</Button>
+        </HStack>
+      </VStack>
     )
   }
 
   useEffect(() => {
-
     getMovie();
     getCity()
   }, []);
@@ -121,42 +152,45 @@ const BuyTicket = ({ movie }) => {
   // };
 
   const handleCinema = (event) => {
- 
     setSelectedCinema(JSON.parse(event.target.value));
     setIsSelected(true);
-
   };
 
   return (
-    <>
+    <VStack>
+      <Header />
       {selectedMovie.map(
         (movie) => (
-            <Box
-              key={movie.id}
-              m="auto"
-              w="90vw"
-              h="90vh"
-              bg="#eeee"
-              display="flex"
-              flex-direction="row"
-              justifyContent="space-around"
+          <HStack
+            key={movie.id}
+            m="auto"
+            w="90vw"
+            h="90vh"
+            justify={'space-around'}
+          >
+            <Box 
+              m="20px" 
+              w="30vw"
+              h={'90%'} 
+              border={'2px solid'}
+              borderRadius={'10px'}
             >
-              <Box m="20px" w="30vw">
-                <Text textAlign="center" mb="30px" fontWeight="700">
-                  {movie.name}
-                </Text>
+              <Heading fontSize={'3xl'} textAlign="center" mt="1rem" mb="1.5rem" fontWeight="700">
+                {movie.name}
+              </Heading>
+              <HStack
+                align={'center'}
+                justify={'center'}
+                w={'100%'}
+                h={'30px'}
+              >  
                 <Select
-                  w="200px"
-                  mb="10px"
+                  w="35%"
                   placeholder="Escolha a cidade"
-
                   onClick={(e)=>setSelectedCity(JSON.parse(e.target.value))}
-               
                 >
                   {movie.movie_session.city.map((city, index) => (
-
                     <option 
-  
                       key={index}
                       w="200px" 
                       value={JSON.stringify(city)}>
@@ -165,13 +199,9 @@ const BuyTicket = ({ movie }) => {
                   ))}
                 </Select>
                 <Select
-                  w="200px"
+                  w="35%"
                   placeholder="Escolha o Cinema"
-                  onClick={
-                    (e)=>{
-
-                      handleCinema(e)
-                    }}
+                  onClick={(e) => {handleCinema(e)}}
                 >
                   {cinemas?.map((cinema,index) => (
                     <option 
@@ -182,52 +212,58 @@ const BuyTicket = ({ movie }) => {
                     </option>
                   ))}
                 </Select>
+              </HStack>
 
-                {isSelected ? (
-                  <Box mt="30px">
-                    {rooms1.map((room,index) => (
-                      <Box
-                        onClick={ () =>renderInfo(room)}
-                        key={index}
-                        display="flex"
-                        flex-direction="row"
-                        w="30vw"
-                        border="1px"
-                        borderColor="black"
-                        justifyContent="space-around"
-                        textAlign="center"
-                        alignItems="center"
-                      >
-                        <Text w="60px">{room.name}</Text>
-                        <Text>{room.time}</Text>
-                        <Text w="90px" textAlign="center">
-                          {room.version}
-                        </Text>
-                        <Text>{room.inteira}</Text>
-                        <Text>{room.meia}</Text>
-                      </Box>
-                    ))}
-                  </Box>
+              {isSelected ? (
+                <VStack mt="30px">
+                  {rooms1.map((room,index) => (
+                    <HStack
+                      onClick={ () =>renderInfo(room)}
+                      key={index}
+                      w="90%"
+                      py={5}
+                      spacing={1}
+                      border="1px"
+                      borderColor="black"
+                      justifyContent="space-around"
+                      alignItems="center"
+                      cursor={'pointer'}
+                    >
+                      <Text w="60px">{room.name}</Text>
+                      <Text>{room.time}</Text>
+                      <Text w="90px" textAlign="center">
+                        {room.version}
+                      </Text>
+                      <Text>{room.inteira}</Text>
+                      <Text>{room.meia}</Text>
+                    </HStack>
+                  ))}
+                </VStack>
                 ) : (
-                  <Box mt="30px">
-                    <Text>Escolha onde quer assistir o filme</Text>
-                  </Box>
-                )}
-                {toRender &&
-                 <Box>
-                   <Text>Você escolheu:</Text>
-                   <RenderInfo info={info}/>
-                 </Box>
-                
-                }
-              </Box>
-              <Box m="20px">
-                <Image src={movie.image} w="30vw" h="80vh" />
-              </Box>
+                <Box mt="30px">
+                  <Text textAlign={'center'}>Escolha onde quer assistir o filme</Text>
+                </Box>
+              )}
+              {toRender &&
+                <VStack
+                  w={'90%'}
+                  ml='1.7rem'
+                  mt={'1rem'}
+                  spacing={5}
+                  py={3}
+                >
+                  <Heading fontSize={'2xl'}>Você escolheu:</Heading>
+                  <RenderInfo info={info}/>
+                </VStack>
+              }
             </Box>
-          )
+            <Box m="20px">
+              <Image src={movie.image} w="30vw" h="80vh"/>
+            </Box>
+          </HStack>
+        )
       )}
-    </>
+    </VStack>
   );
 };
 
