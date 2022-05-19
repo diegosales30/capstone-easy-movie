@@ -34,9 +34,12 @@ const Login = () => {
         h="8vh"
         align={"center"}
         justify={"space-between"}
+        sx={{"@media(max-width: 768px)":{
+          justifyContent:'center'
+  }}}
       >
-        <Heading fontSize={"20px"} justify={"center"} color={"#E50914"}>
-          <Image src={logo} w={"300px"} />
+        <Heading fontSize={"20px"} justify={"center"} color={"#E50914"} >
+          <Image src={logo} w={"300px"} h={"8.5vh"} />
         </Heading>
         {/* <HStack>
           <Button onClick={toggleColorMode}>
@@ -44,9 +47,9 @@ const Login = () => {
           </Button>
         </HStack> */}
       </HStack>
-      <Center h="90vh" minW="25%">
-        <VStack spacing={5} p={10} bg={"rgba(0,0,0,.75)"} w="100%" h="75%">
-          <Heading fontSize={"4xl"} justify={"center"} color={"#E50914"}>
+      <Center h="90vh" maxH={"862px"}  maxW="500px" minW="320px" w="80vw">
+        <VStack spacing={5} p={0} bg={"rgba(0,0,0,.75)"} w="100%" h="65vh" padding="30px 0px"  maxH={"560px"}>
+          <Heading fontSize={"4xl"} justify={"center"} color={"#E50914"} lineHeight={1.2}>
             Entrar
           </Heading>
 
