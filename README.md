@@ -1,6 +1,8 @@
  ### Deploy da aplicação com Vercel: :octocat:: 
 > Status do Projeto: Em Andamento 🕐:
 
+Teste a aplicação aqui --> https://capstone-easy-movie.vercel.app/
+
 
 ### Tecnologias:
 - <img src="https://img.shields.io/static/v1?label=react&message=framework&color=blue&style=for-the-badge&logo=REACT"/>
