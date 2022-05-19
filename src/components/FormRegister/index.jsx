@@ -36,7 +36,7 @@ const RegisterForm = () => {
       .required("Senha é obrigatório!")
       .matches(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
-        "Deve conter, letra Maiúscula, caractere especial e no Mínimo 8 digitos"
+        "Deve conter, letra maiúscula, carácter especial e mínimo de 8 digitos."
       ),
     confirmPassword: yup
       .string()
