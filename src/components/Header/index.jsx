@@ -17,6 +17,7 @@ import {
   InputGroup,
   InputLeftElement,
   Heading,
+  Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
 import { useDispatch } from "react-redux";
+import logo from "../../assets/logo0.png";
 
 export default function Header() {
   const token = JSON.stringify(localStorage.getItem("@token"));
@@ -39,14 +41,24 @@ export default function Header() {
   const handleSearch = () => {
     dispatch(searchMoviesThunk(inputValue));
   };
-
+  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <>
-      <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box
+        position={"fixed"}
+        zIndex="999"
+        h="8.5vh"
+        top={0}
+        left={0}
+        right={0}
+        w={"100%"}
+        bg={useColorModeValue("gray.100", "gray.900")}
+        px={4}
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
-              Easy Movie
+              <Image src={logo} w={300} />
             </Heading>
           </Box>
           <VStack>
@@ -68,6 +80,8 @@ export default function Header() {
                   variant="solid"
                   bg={"#E50914"}
                   color="white"
+                  colorScheme={colorMode === "light" ? "red" : "light"}
+                  _hover={{ background: backgroundButton}}
                   onClick={() => {
                     localStorage.clear();
                     navigate("/login");

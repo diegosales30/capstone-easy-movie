@@ -1,1 +1,1 @@
-export const LIST_MOVIES = "LIST_MOVIES"
+export const LIST_MOVIES = "LIST_MOVIES";

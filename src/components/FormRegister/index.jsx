@@ -39,7 +39,7 @@ const RegisterForm = () => {
       ),
     confirmPassword: yup
       .string()
-      .required("Senha é obrigatório!")
+      .required("Confirmação de senha é obrigatório!")
       .oneOf([yup.ref("password")], "Digite a senha corretamente!"),
   });
 
@@ -77,8 +77,9 @@ const RegisterForm = () => {
   return (
     <VStack>
       <FormControl isInvalid={invalidUsername} isRequired>
-        <FormLabel>Usuário</FormLabel>
+        <FormLabel color={"white"}>Usuário</FormLabel>
         <Input
+          color={"white"}
           variant="outline"
           size={"lg"}
           type="text"
@@ -88,8 +89,9 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidEmail} isRequired>
-        <FormLabel>Email</FormLabel>
+        <FormLabel color={"white"}>Email</FormLabel>
         <Input
+          color={"white"}
           variant="outline"
           size={"lg"}
           type="email"
@@ -99,9 +101,10 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidPassword} isRequired>
-        <FormLabel>Senha</FormLabel>
+        <FormLabel color={"white"}>Senha</FormLabel>
         <InputGroup>
           <Input
+            color={"white"}
             variant="outline"
             size={"lg"}
             type={show ? "text" : "password"}
@@ -110,6 +113,7 @@ const RegisterForm = () => {
           />
           <InputRightElement>
             <IconButton
+              color={"white"}
               variant="unstyled"
               mt="0.5rem"
               size="md"
@@ -122,9 +126,10 @@ const RegisterForm = () => {
         <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidConfirmPassword} isRequired>
-        <FormLabel>Confirmar Senha</FormLabel>
+        <FormLabel color={"white"}>Confirmar Senha</FormLabel>
         <InputGroup>
           <Input
+            color={"white"}
             variant="outline"
             size={"lg"}
             type={show ? "text" : "password"}
@@ -133,6 +138,7 @@ const RegisterForm = () => {
           />
           <InputRightElement>
             <IconButton
+              color={"white"}
               variant="unstyled"
               mt="0.5rem"
               size="md"

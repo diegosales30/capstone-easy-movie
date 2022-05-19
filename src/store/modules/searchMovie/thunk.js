@@ -2,10 +2,10 @@ import axios from "axios";
 import { searchMovies } from "./action";
 
 export const searchMoviesThunk = (inputValue) => (dispatch) => {
-    axios
+  axios
     .get(`https://easy-movie.herokuapp.com/movies?name=${inputValue}`)
     .then((response) => {
-        dispatch(searchMovies(response.data));
+      dispatch(searchMovies(response.data));
     })
-    .catch((err) => console.log(err))
-}
+    .catch((err) => console.log(err));
+};

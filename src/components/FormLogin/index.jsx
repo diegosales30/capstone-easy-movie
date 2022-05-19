@@ -18,8 +18,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from "react-redux";
 import { signInThunk } from "../../store/modules/user/thunk";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const formSchema = yup.object().shape({
@@ -30,7 +29,7 @@ const LoginForm = () => {
     //adicionar Regex para senha forte
     password: yup
       .string()
-      .min(8, "Mínimo de 6 caracteres")
+
       .required("Senha é obrigatório!"),
   });
 
@@ -49,7 +48,7 @@ const LoginForm = () => {
   const invalidEmail = () => (errors.email ? true : false);
   const invalidPassword = () => (errors.password ? true : false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -59,11 +58,10 @@ const LoginForm = () => {
   return (
     <VStack spacing={5} as={"form"}>
       <FormControl isInvalid={invalidEmail}>
-        <FormLabel color={"#8c8c8c"}>Email</FormLabel>
+        <FormLabel color={"white"}>Email</FormLabel>
         <Input
           color={"white"}
           variant="outline"
-          bg="#333"
           size={"lg"}
           type="email"
           name="email"
@@ -72,12 +70,11 @@ const LoginForm = () => {
         <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={invalidPassword}>
-        <FormLabel color={"#8c8c8c"}>Senha</FormLabel>
+        <FormLabel color={"white"}>Senha</FormLabel>
         <InputGroup>
           <Input
             color={"white"}
             variant="outline"
-            bg="#333"
             size={"lg"}
             type={show ? "text" : "password"}
             name="password"
@@ -85,7 +82,7 @@ const LoginForm = () => {
           />
           <InputRightElement>
             <IconButton
-              color="#8c8c8c"
+              color="white"
               variant="unstyled"
               mt="0.5rem"
               size="md"
