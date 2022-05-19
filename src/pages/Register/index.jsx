@@ -32,14 +32,14 @@ const Register = () => {
         borderColor="gray.200"
         bg={"rgba(0,0,0,.75)"}
         w="100%"
-        h="8vh"
+        minH="80px"
         align={"center"}
         justify={"space-between"}
         sx={{"@media(max-width: 768px)":{
           justifyContent:'center'
   }}}
       >
-        <Heading fontSize={"20px"} justify={"center"} color={"#E50914"}>
+        <Heading justify={"center"} color={"#E50914"}>
           <Image src={logo} w={"300px"} />
         </Heading>
         {/* <HStack>
