@@ -68,8 +68,8 @@ const Register = () => {
         align={"center"}
         bg={"rgba(0,0,0,.75)"}
       >
-        <FaCopyright />
-        <Text ml="0.5rem">
+        <FaCopyright color="white" />
+        <Text ml="0.5rem" color={"white"}>
           2022 IFood Kenzie - Team 4. All rights reserved.
         </Text>
       </Flex>

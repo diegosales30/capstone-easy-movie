@@ -68,7 +68,6 @@ const Carrosel = () => {
           _hover={{ opacity: "1", transition: "all ease 0.5s" }}
           onClick={handleNextList}
         >
-          <Heading>Lançamentos</Heading>
           <MdNavigateNext fontSize={"50"} />
         </Flex>
         <HStack bg={"yellow.100"} ml={"scrollX"} w={"90%"}>
