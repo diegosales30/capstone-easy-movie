@@ -17,6 +17,7 @@ import {
   InputGroup,
   InputLeftElement,
   Heading,
+  Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { searchMoviesThunk } from "../../store/modules/searchMovie/thunk";
 import { useDispatch } from "react-redux";
+import logo from "../../assets/logo0.png";
 
 export default function Header() {
   const token = JSON.stringify(localStorage.getItem("@token"));
@@ -46,7 +48,7 @@ export default function Header() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <Heading fontSize={"3xl"} color={"#E50914"} cursor={"pointer"}>
-              Easy Movie
+              <Image src={logo} w={300} />
             </Heading>
           </Box>
           <VStack>
@@ -68,6 +70,7 @@ export default function Header() {
                   variant="solid"
                   bg={"#E50914"}
                   color="white"
+                  colorScheme={colorMode === "light" ? "red" : "light"}
                   onClick={() => {
                     localStorage.clear();
                     navigate("/login");
