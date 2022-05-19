@@ -26,9 +26,8 @@ const Home = () => {
     <VStack>
       <Header />
       <VStack w="100%">
-        <Box display={"flex"} mt={"5rem"} w={"80%"} h={"49.2vh"}>
-          <MovieSlide />
-        </Box>
+        <MovieSlide />
+
         <CardMovie />
         <Footer />
       </VStack>

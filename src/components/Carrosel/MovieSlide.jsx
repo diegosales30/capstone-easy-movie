@@ -6,7 +6,7 @@ import "swiper/css/effect-coverflow";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper";
-import { Heading, VStack } from "@chakra-ui/react";
+import { Heading, Image, VStack } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { listMoviesThunkCarrosel } from "../../store/modules/moviesAll/thunk";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ const MovieSlide = () => {
 
   return (
     <>
-      <VStack w="100%" h="49.2vh" maxW={1280} margin={"auto"}>
+      <VStack w="100%" h="60.2vh" maxW={1280} margin={"auto"}>
         <Heading as="h3" size="lg">
           Filmes em cartaz
         </Heading>
@@ -50,8 +50,15 @@ const MovieSlide = () => {
           >
             {filtrado.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="product-images-slider-thumbs-wrapper">
-                  <img src={item.poster} alt="movie imagem" />
+                <div
+                  className="product-images-slider-thumbs-wrapper"
+                  style={{ height: "90%" }}
+                >
+                  <Image
+                    src={item.poster}
+                    alt="movie imagem"
+                    h={"100% !important"}
+                  />
                 </div>
               </SwiperSlide>
             ))}
