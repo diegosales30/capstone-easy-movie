@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { listMoviesThunk } from "../../store/modules/movies/thunk";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Rating = ({ rating, numReviews }) => {
   return (
