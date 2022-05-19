@@ -45,10 +45,10 @@ export default function Header() {
   
   return (
     <>
-      <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+      <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4} >
+        <Flex alignItems={"center"} justifyContent={"space-between"}  flexDirection={{base: 'column', md: 'row', lg: 'row'}} margin="10px">
           <Box>
-            <Heading fontSize={"3xl"} color={"#E50914"} onClick={() => {
+            <Heading fontSize={"3xl"} color={"#E50914"} margin="10px" onClick={() => {
               setTimeout(() => {
                 window.location.reload("/");
               },200)
@@ -57,16 +57,16 @@ export default function Header() {
             </Heading>
           </Box>
           <VStack>
-            <InputGroup>
+            <InputGroup margin="10px">
               <Input onChange={(e) => setInputValue(e.target.value)}/>
               <InputLeftElement>
                 <SearchIcon cursor="pointer" onClick={handleSearch}/>
               </InputLeftElement>
             </InputGroup>
           </VStack>
-          <Flex alignItems={"center"}>
+          <Flex alignItems={"center"} margin="10px">
             <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
+              <Button onClick={toggleColorMode} >
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 

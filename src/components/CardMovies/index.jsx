@@ -153,9 +153,9 @@ const CardMovie = () => {
             </Box>
           </Box>
         ))}
-        </>
+      </>
         :
-        <>              
+      <>        
         {searchMovies.map((movie) => (
           <Box
             bg="#F5F4F3"
@@ -231,14 +231,14 @@ const CardMovie = () => {
             </Box>
           </Box>
         ))}
-        </> 
+        </>  
       }
   
         <Box>
-          <Modal isOpen={isOpen} onClose={onClose} size="xl">
+          <Modal isOpen={isOpen} onClose={onClose} size="4xl">
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader textAlign="center" fontSize="15px">
+              <ModalHeader textAlign="center" fontSize="25px">
                 {info.name}
               </ModalHeader>
               <ModalCloseButton />
@@ -263,7 +263,7 @@ const CardMovie = () => {
                     height="250px"
                   />
                   <Box
-                    margin="10px"
+                    margin="7px"
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
@@ -271,7 +271,7 @@ const CardMovie = () => {
                   >
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -279,7 +279,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -287,7 +287,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="5px"
                     >
@@ -295,7 +295,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
@@ -303,7 +303,7 @@ const CardMovie = () => {
                     </Box>
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
@@ -312,7 +312,7 @@ const CardMovie = () => {
 
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="15px"
                       marginTop="15px"
@@ -332,7 +332,7 @@ const CardMovie = () => {
 
                     <Box
                       as="h5"
-                      fontSize="13px"
+                      fontSize="15px"
                       fontWeight="semibold"
                       marginBottom="10px"
                     >
