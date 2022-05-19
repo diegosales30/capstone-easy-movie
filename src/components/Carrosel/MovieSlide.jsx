@@ -7,14 +7,28 @@ import "swiper/css/effect-coverflow";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination } from "swiper";
 import { Heading, VStack } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { listMoviesThunkCarrosel } from "../../store/modules/moviesAll/thunk";
+import { useEffect } from "react";
 
 const MovieSlide = () => {
+  const dispatch = useDispatch();
+
+  const movies = useSelector((state) => state.moviesCarrosel);
+
+  useEffect(() => {
+    dispatch(listMoviesThunkCarrosel());
+  }, []);
+
+  const cartaz = movies.filter((movie) => movie.movie_session.status);
+  console.log(cartaz);
   return (
     <>
       <VStack w="100%" h="49.2vh" maxW={1280} margin={"auto"}>
         <Heading as="h3" size="lg">
           Filmes em cartaz
         </Heading>
+
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -35,96 +49,13 @@ const MovieSlide = () => {
           modules={[EffectCoverflow, Pagination]}
           className="product-images-slider-thumbs"
         >
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="product-images-slider-thumbs-wrapper">
-              <img
-                src={
-                  "https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Doutor-Estranho-e-Wanda-750x422.jpg"
-                }
-                alt="movie imagem"
-              />
-            </div>
-          </SwiperSlide>
+          {cartaz.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <div className="product-images-slider-thumbs-wrapper">
+                <img src={movie.poster} alt="movie imagem" />
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </VStack>
     </>
