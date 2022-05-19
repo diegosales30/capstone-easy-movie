@@ -28,7 +28,17 @@ export default function Header() {
 
   return (
     <>
-      <Box w={"100%"} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box 
+        position={'fixed'}
+        zIndex='999'
+        h='6.5vh'
+        top={0}
+        left={0}
+        right={0}
+        w={"100%"} 
+        bg={useColorModeValue("gray.100", "gray.900")}
+        px={4}
+        >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <Heading fontSize={"3xl"} color={"#E50914"}>

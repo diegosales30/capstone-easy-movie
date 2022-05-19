@@ -1,4 +1,5 @@
-import {Navigate, useLocation } from "react-router-dom";
+/* Verificar posteriormente o redirect da pagina home para a pagina de login após o logout */
+import { Navigate, useLocation } from "react-router-dom";
 
     const token = localStorage.getItem('@token') || ''
 

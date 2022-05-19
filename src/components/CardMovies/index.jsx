@@ -53,7 +53,7 @@ const Rating = ({ rating, numReviews }) => {
 const CardMovie = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [info, setInfo] = useState({});
-  let [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const token = JSON.stringify(localStorage.getItem("@token"));
   const moviesData = useSelector((state) => state.movies);
@@ -89,7 +89,7 @@ const CardMovie = () => {
             flexDirection="column"
             margin="10px"
             key={movie.id}
-            _hover={{ transition: 'all 0.7s', transform: 'scale(1.1)'}}
+            _hover={{ transition: 'all 0.2s', transform: 'scale(1.1)'}}
           > 
             <Image
               src={movie.image}
