@@ -8,6 +8,7 @@ import {
   IconButton,
   VStack,
   InputGroup,
+  useColorModeValue,
   
 } from '@chakra-ui/react';
 import { LockIcon, UnlockIcon } from '@chakra-ui/icons';
@@ -54,7 +55,7 @@ const LoginForm = () => {
   const onSubmit = (data) => {
     return dispatch(signInThunk(data, navigate));
   };
-
+  const backgroundButton = useColorModeValue('gray.500', 'gray.700') //AQUI MUDA O BACKGROUND DOS BOTÕES
   return (
     <VStack spacing={5} as={"form"}>
       <FormControl isInvalid={invalidEmail}>
