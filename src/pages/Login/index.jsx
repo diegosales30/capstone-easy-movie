@@ -34,22 +34,32 @@ const Login = () => {
         minH="80px"
         align={"center"}
         justify={"space-between"}
-        sx={{"@media(max-width: 768px)":{
-          justifyContent:'center'
-  }}}
+        sx={{
+          "@media(max-width: 768px)": {
+            justifyContent: "center",
+          },
+        }}
       >
-        <Heading justify={"center"} color={"#E50914"} >
+        <Heading justify={"center"} color={"#E50914"}>
           <Image src={logo} w={"300px"} />
         </Heading>
-        {/* <HStack>
-          <Button onClick={toggleColorMode}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-          </Button>
-        </HStack> */}
       </HStack>
-      <Center h="90vh" maxH={"862px"}  maxW="500px" minW="320px" w="80vw">
-        <VStack spacing={5} p={0} bg={"rgba(0,0,0,.75)"} w="100%" h="65vh" padding="30px 0px"  maxH={"560px"}>
-          <Heading fontSize={"4xl"} justify={"center"} color={"#E50914"} lineHeight={1.2}>
+      <Center h="90vh" maxH={"862px"} maxW="500px" minW="320px" w="80vw">
+        <VStack
+          spacing={5}
+          p={0}
+          bg={"rgba(0,0,0,.75)"}
+          w="100%"
+          h="65vh"
+          padding="30px 0px"
+          maxH={"560px"}
+        >
+          <Heading
+            fontSize={"4xl"}
+            justify={"center"}
+            color={"#E50914"}
+            lineHeight={1.2}
+          >
             Entrar
           </Heading>
 

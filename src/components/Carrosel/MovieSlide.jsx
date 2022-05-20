@@ -52,7 +52,9 @@ const MovieSlide = () => {
               <SwiperSlide key={item.id}>
                 <div
                   className="product-images-slider-thumbs-wrapper"
-                  style={{ height: "90%" }}
+                  style={{
+                    height: "90%",
+                  }}
                 >
                   <Image
                     src={item.poster}

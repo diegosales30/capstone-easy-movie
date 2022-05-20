@@ -1,12 +1,12 @@
-import { 
-  Box, 
-  Text, 
-  Select, 
-  Image, 
+import {
+  Box,
+  Text,
+  Select,
+  Image,
   Button,
   VStack,
   HStack,
-  Heading
+  Heading,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -107,15 +107,15 @@ const [enterRoom, setEnterRoom] = useState([])
           {/* <Text>{buyInfo.version}</Text> */}
           <Text>Valor total: R${buyInfo.price.toFixed(2)}</Text>
         </HStack>
-        <HStack
-          w={'40%'}
-        >
-          <Button 
-            color={'white'} 
-            bg={'#E50914'}
-            width={'100%'}
-            onClick={()=>navigate('/')}
-          >Pagar</Button>
+        <HStack w={"40%"}>
+          <Button
+            color={"white"}
+            bg={"#E50914"}
+            width={"100%"}
+            onClick={() => navigate("/")}
+          >
+            Pagar
+          </Button>
         </HStack>
       </VStack>
     )
@@ -135,16 +135,16 @@ const [enterRoom, setEnterRoom] = useState([])
             h="90vh"
             justify={'space-around'}
           >
-            <Box 
-              m="20px" 
-              w="30vw"
-              h={'90%'} 
-              border={'2px solid'}
-              borderRadius={'10px'}
-            >
+              <Box
+                  m="20px"
+                  w="30vw"
+                  h={"90%"}
+                  border={"2px solid"}
+                  borderRadius={"10px"}>
               <Heading fontSize={'3xl'} textAlign="center" mt="1rem" mb="1.5rem" fontWeight="700">
                 {movie.name}
               </Heading>
+
               <HStack
                 align={'center'}
                 justify={'center'}
@@ -172,8 +172,8 @@ const [enterRoom, setEnterRoom] = useState([])
                 >
                   {cinemas?.map((cinema,index) => (
                     <option 
-                      key={index}
-                      w="200px" 
+                    key={index}
+                    w="200px" 
                       value={JSON.stringify(cinema)}>
                       {cinema.name}
                     </option>
@@ -228,13 +228,16 @@ const [enterRoom, setEnterRoom] = useState([])
                   <RenderInfo info={buyInfo}/>
                 </VStack>
               }
-            </Box>
+      </Box>
+
             <Box m="20px">
               <Image src={movie.image} w="30vw" h="80vh"/>
             </Box>
           </HStack>
           )
-          )}
+      )
+      }
+          
           </VStack>
           );
         };
