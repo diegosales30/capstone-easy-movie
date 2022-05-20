@@ -7,6 +7,7 @@ import {
   VStack,
   HStack,
   Heading,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -16,6 +17,10 @@ import Header from "../../components/Header";
 const BuyTicket = () => {
   const id = localStorage.getItem("@idMovie");
   const navigate = useNavigate()
+
+  const backgroundButton = useColorModeValue("gray.500", "gray.700");
+  const backgroundRoom = useColorModeValue("red.500", "red.700")
+  const backgroundBox = useColorModeValue("gray.100", "gray.600")
 
   const [isSelected, setIsSelected] = useState(false); // BOLEANO PARA ABRIR OPÇÕES DE COMPRA
 
@@ -93,14 +98,17 @@ const [enterRoom, setEnterRoom] = useState([])
     // console.log(selectedMovie)
     return(
       <VStack
-        justify={'space-around'}
-        align='center'
-      >
+      w={"100%"}>
+
         <HStack
-        spacing={5}
-        mb={'1rem'}
-        border={'1px solid black'}
-        px={5}
+        w="90%"
+        py={5}
+        spacing={1}
+        border="1px"
+        borderColor="gray.700"
+        borderRadius="10px"
+        justifyContent="space-around"
+        alignItems="center"
         >
           <Text>{buyInfo.name}</Text>
           <Text>{buyInfo.time}</Text>
@@ -112,6 +120,7 @@ const [enterRoom, setEnterRoom] = useState([])
             color={"white"}
             bg={"#E50914"}
             width={"100%"}
+            _hover={{ background: backgroundButton }}
             onClick={() => navigate("/")}
           >
             Pagar
@@ -134,13 +143,29 @@ const [enterRoom, setEnterRoom] = useState([])
             w="90vw"
             h="90vh"
             justify={'space-around'}
+            sx={{"@media(max-width: 800px)":{
+              "flex-direction": "column-reverse",
+              "alignItems":"center",
+              "justifyContent":"center",
+              "min-height":"1000px"
+            }}}
           >
               <Box
-                  m="20px"
-                  w="30vw"
+                  // m="20px"
+                  w="40vw"
+                  minW={"320px"}
+                  maxW={"620px"}
                   h={"90%"}
+                  minH={"600px"}
                   border={"2px solid"}
-                  borderRadius={"10px"}>
+                  borderRadius={"10px"}
+                  background={backgroundBox}
+                  sx={{"@media(max-width: 800px)":{
+                    "width":"90vw",
+                    "margin-top": "30px"
+                  }}}
+                  >
+
               <Heading fontSize={'3xl'} textAlign="center" mt="1rem" mb="1.5rem" fontWeight="700">
                 {movie.name}
               </Heading>
@@ -148,26 +173,40 @@ const [enterRoom, setEnterRoom] = useState([])
               <HStack
                 align={'center'}
                 justify={'center'}
+                flexDirection={'column'}
                 w={'100%'}
-                h={'30px'}
+                minH={'30px'}
+                maxH={"80px"}
+                marginTop={"20px"}
+                sx={{
+                  "@media(max-width: 768px)": {
+                    "flex-direction": "column"
+                  },
+                }}
               >  
                 <Select
-                  w="35%"
+                  w="80%"
+                  maxW={"330px"}
+                  margin={"8px"}
                   placeholder="Escolha a cidade"
+                  _hover={{border: "2px"}}
                   onClick={(e)=>handleCity(JSON.parse(e.target.value))}
                 >
                   {movie.movie_session.city.map((city, index) => (
                     <option 
                       key={index}
-                      w="200px" 
+                      w="200px"
                       value={JSON.stringify(city)}>
                       {city.name}
                     </option>
                   ))}
                 </Select>
                 <Select
-                  w="35%"
-                  placeholder="Escolha o Cinema"
+                  w="80%"
+                  maxW={"330px"}
+                  margin={"8px"}
+                  placeholder="Escolha o cinema"
+                  _hover={{border: "2px"}}
                   onClick={(e) => {handleCinema(JSON.parse(e.target.value))}}
                 >
                   {cinemas?.map((cinema,index) => (
@@ -195,10 +234,12 @@ const [enterRoom, setEnterRoom] = useState([])
                           py={5}
                           spacing={1}
                           border="1px"
-                          borderColor="black"
+                          borderColor="gray.700"
+                          borderRadius="10px"
                           justifyContent="space-around"
                           alignItems="center"
                           cursor={'pointer'}
+                          _hover={{ background: backgroundRoom, color:'white' }}
                           onClick={ () =>renderInfo(room.name, time, enterCine.price.weekend)}
                         >
                           <Text w="60px">{room.name}</Text>
@@ -218,9 +259,9 @@ const [enterRoom, setEnterRoom] = useState([])
               )}
               {toRender &&
                 <VStack
-                w={'90%'}
-                ml='1.7rem'
-                mt={'1rem'}
+                w={'100%'}
+                // ml='1.7rem'
+                // mt={'1rem'}
                 spacing={5}
                 py={3}
                 >
@@ -231,7 +272,13 @@ const [enterRoom, setEnterRoom] = useState([])
       </Box>
 
             <Box m="20px">
-              <Image src={movie.image} w="30vw" h="80vh"/>
+              <Image src={movie.image} w="30vw" h="45vw" minW={"250px"} minH={"375px"}
+              sx={{"@media(max-width: 768px":{
+                "width":"10vw",
+                "height":"15vw",
+                "min-width": "250px",
+                "min-heigth": "375px"
+              }}}/>
             </Box>
           </HStack>
           )
