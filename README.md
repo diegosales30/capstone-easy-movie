@@ -32,6 +32,7 @@ yarn add redux react-redux redux-thunk
 Execute a aplicação:
 ```
 yarn start
+iniciar
 ```
 
 ## Linguagens e libs :books:
